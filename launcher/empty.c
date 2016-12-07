@@ -6,9 +6,11 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:38:16 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/07 15:40:31 by mduhoux                                  */
+/*   Updated: 2016/12/07 16:03:14 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <launcher.h>
 
 void	empty()
 {
