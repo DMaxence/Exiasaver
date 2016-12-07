@@ -21,11 +21,11 @@
 // INPUT fileName - name of image to parse
 // NOTE - only accepts RGB images
 // NOTE - Make sure to pass empty pointers that will be mallocced in this func
-void readMetaData(char fileName[], int * x, int * y, int * RGB);
+void readMetaData(char fileName[], int ** x, int ** y, int ** RGB);
 
 //readPBM
 // INPUT fileName - file name
 // INPUT imageWifdth - Width of image to parse
 // INPUT image Height - Height of image to parse
 // OUTPUT output - Array of array of the image to print
-void readPBM(char fileName[], int * imageWidth, int * imageHeight, char ** output[]);
+void readPBM(char fileName[], int ** imageWidth, int ** imageHeight, char ** output[]);
