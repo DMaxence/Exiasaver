@@ -14,10 +14,10 @@
 
 #define SIZELINE 255
 
-int readMetaData(char[] fileName, int * x, int * y, int * RGB)
+void readMetaData(char fileName[], int * x, int * y, int * RGB)
 {
 	//First, we have to make sure pointers are set to NULL;
-	if (x =! NULL || y != NULL ||  RGB != NULL)
+	if (x != NULL || y != NULL ||  RGB != NULL)
 	{
 		puts("Erreur de programmation: un pointeur n'est pas nul pour readMetaData\n");
 		exit(1);
@@ -50,10 +50,12 @@ int readMetaData(char[] fileName, int * x, int * y, int * RGB)
 		//We just wait for a line that starts with P
 		if (line[0] == 'P')
 		{
+			RGB = malloc(sizeof(char));
 			*RGB = line[1] - '0'; //Converts char to int
 			stop  = 1;
 		}
 	}
+
 
 	//Then we have to get the dimensions
 	while(stop != 2)
@@ -66,27 +68,30 @@ int readMetaData(char[] fileName, int * x, int * y, int * RGB)
 		}
 
 		//We have to get the next line after the magic number that's not a commment
-		if (line[0] =! '#')
+		if (line[0] != '#')
 		{
+			x = malloc(sizeof(int));
+			y = malloc(sizeof(int));
 			*x = 0;
 			*y = 0;
 
 			sscanf(line, "%d %d", x, y);
 
-			if (*x == 0 || *y == 0 || !x || !y)
+			if (*x == 0 || *y == 0)
 			{
 				puts("Erreur, les paramètres de taille de l'image doivent être sur la même ligne. Image:");
-				puts("fileName");
+				puts(fileName);
 				exit(1);
 			}
 
 			stop  = 2;
 		}
 	}
+	puts("bienvenue");
 }
 
 
-int readPBM(char[] fileName, int * imageWidth, int * imageHeight, char ** output[])
+void readPBM(char fileName[], int * imageWidth, int * imageHeight, char ** output[])
 {
 
 }
