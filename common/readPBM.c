@@ -14,7 +14,7 @@
 
 #define SIZELINE 255
 
-void readMetaData(char fileName[], int ** x, int ** y, int ** RGB)
+void readMetaData(FILE * file, int ** x, int ** y, int ** RGB)
 {
 	//First, we have to make sure pointers are set to NULL;
 	if (*x != NULL || *y != NULL ||  *RGB != NULL)
@@ -23,17 +23,9 @@ void readMetaData(char fileName[], int ** x, int ** y, int ** RGB)
 		exit(1);
 	}
 	
-	FILE* file = fopen(fileName, "r");
+	
 	char line[SIZELINE];
 	int stop = 0;
-	
-	//We check if the the file is successfully opened
-	if(file == NULL)
-	{
-		puts("Erreur, le fichier suivant n'a pas pu être ouvert:");
-		puts(fileName);
-		exit(1);
-	}
 
 	//We read each line. We have to make sure we read data in the right order
 
@@ -42,8 +34,7 @@ void readMetaData(char fileName[], int ** x, int ** y, int ** RGB)
 	{
 		if(fgets(line, SIZELINE, file) == NULL)
 		{
-			puts("Erreur, le fichier suivant ne possede pas de 'magic number':");
-			puts(fileName);
+			puts("Erreur, fichier suivant ne possede pas de 'magic number'");
 			exit(1);
 		}
 
@@ -62,8 +53,7 @@ void readMetaData(char fileName[], int ** x, int ** y, int ** RGB)
 	{
 		if(fgets(line, SIZELINE, file) == NULL)
 		{
-			puts("Erreur, le fichier suivant ne possede pas de dimensions:");
-			puts(fileName);
+			puts("Erreur, le fichier ne possede pas de dimensions.");
 			exit(1);
 		}
 
@@ -79,8 +69,7 @@ void readMetaData(char fileName[], int ** x, int ** y, int ** RGB)
 
 			if (*x == 0 || *y == 0)
 			{
-				puts("Erreur, les paramètres de taille de l'image doivent être sur la même ligne. Image:");
-				puts(fileName);
+				puts("Erreur, les paramètres de taille de l'image doivent être sur la même ligne.");
 				exit(1);
 			}
 
@@ -90,7 +79,22 @@ void readMetaData(char fileName[], int ** x, int ** y, int ** RGB)
 }
 
 
-void readPBM(char fileName[], int ** imageWidth, int ** imageHeight, char ** output[])
+void readPBM(FILE * file, int * color, int * imageWidth, int * imageHeight, char ** output[])
 {
+	//First, we have to make sure pointers are set to NULL;
+	if (imageWidth == NULL || imageHeight == NULL)
+	{
+		puts("Erreur de programmation: un pointeur est nul pour readPBM\n");
+		exit(1);
+	}
 
+	char line[SIZELINE];
+
+	//on doit prendre les valeurs par groupe de 1 ou 3 en fonction de la couleur.
+
+	//Tants qu'on est pas à la fin du fichier
+	while(fgets(line, SIZELINE, file) != NULL)
+	{
+		
+	}
 }

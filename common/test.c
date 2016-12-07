@@ -5,12 +5,13 @@ int main()
 	int* x;
 	int* y;
 	int* RGB;
-
+	
+	FILE* file = fopen("ex2.pbm", "r");
 	x = NULL;
 	y = NULL;
 	RGB = NULL;
 
-	readMetaData("ex2.pbm", &x, &y, &RGB);
+	readMetaData(file, &x, &y, &RGB);
 
 	printf("x: %d\ny: %d\nRGB: %d\n", *x, *y, *RGB);
 	
@@ -21,5 +22,6 @@ int main()
 
 	//readMetaData OK!
 
+	fclose(file);
 	return 0;
 }
