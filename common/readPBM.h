@@ -18,9 +18,10 @@
 // OUTPUT - error code
 // OUTPUT x - image width
 // OUTPUT y - image height
-// OUTPUT RGB - Whether or not the image is RGB (0 -> black and white ; 1 -> RGB)
+// OUTPUT RGB - Whether or not the image is RGB (1 -> black and white ; 3 -> RGB)
 // INPUT fileName - name of image to parse
 // NOTE - only accepts RGB images
+// NOTE - Make sure to pass empty pointers that will be mallocced in this func
 int readMetaData(char[] fileName, int * x, int * y, int * RGB);
 
 //readPBM
