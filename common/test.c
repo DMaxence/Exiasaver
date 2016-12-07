@@ -18,10 +18,13 @@ int main()
 	free(x);
 	free(y);
 	free(RGB);
+	fclose(file);
 
 
 	//readMetaData OK!
 
-	fclose(file);
+	character ** imageArray;
+	readPBM("ex2.pbm", &imageArray);
+
 	return 0;
 }
