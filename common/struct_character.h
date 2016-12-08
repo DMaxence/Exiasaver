@@ -4,9 +4,9 @@
 //de 0 à 255
 struct color
 {
-	unsigned R;
-	unsigned G;
-	unsigned B;
+	unsigned int R;
+	unsigned int G;
+	unsigned int B;
 };
 typedef struct color color;
 

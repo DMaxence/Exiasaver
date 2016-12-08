@@ -81,6 +81,9 @@ void readMetaData(FILE * file, int ** x, int ** y, int ** RGB)
 
 void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeight, character *** output)
 {
+	int currLine; 
+	int currColumn;
+
 	//First, we have to make sure pointers are set to NULL;
 	if (imageWidth == NULL || imageHeight == NULL)
 	{
@@ -91,7 +94,7 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 	char line[SIZELINE];
 
 	//Il faut malloc l'output en fonction de la taille de l'image
-	*output = createTable(*imageWidth, *imageHeight); //BUGGGG
+	*output = createTable(*imageWidth, *imageHeight);
 
 
 	//Tants qu'on est pas à la fin du fichier, on lit la ligne suivante	
@@ -125,12 +128,13 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 						tmp.rgb.G = 0;
 						tmp.rgb.B = 0;
 					}
-					puts("DEBU>G");
-					printf("%d\n", (bytesRead - 1) % *imageWidth);
-					printf("%d\n", (int)bytesRead / *imageWidth);
-					printf("size of array: %lu %lu", sizeof(*output[0]) / sizeof(character), sizeof(**output) / sizeof(character));
-					*output[(bytesRead - 1) % *imageWidth][(int)bytesRead / *imageWidth] = tmp;
-					puts("DEBU>G");
+
+					currLine = (bytesRead - 1) % *imageWidth;
+					currColumn = bytesRead / *imageWidth;
+					//printf("%d\n", currLine);
+					//printf("%d\n", currColumn);
+
+					(*output)[currLine][currColumn] = tmp;
 				}
 				else //si c'est RGB
 				{
