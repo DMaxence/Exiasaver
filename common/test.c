@@ -25,6 +25,7 @@ int main()
 
 	character ** imageArray;
 	readPBM("ex2.pbm", &imageArray);
+	printArray(imageArray, 15, 15);
 
 	return 0;
 }

@@ -81,8 +81,12 @@ void readMetaData(FILE * file, int ** x, int ** y, int ** RGB)
 
 void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeight, character *** output)
 {
+	//La ligne dans laquelle on écrit dans le tableau
 	int currLine; 
+	//La colonne dans laquelle on écrit dans le tableau
 	int currColumn;
+	//Le nombre de mots lu
+	int bytesRead = 0;
 
 	//First, we have to make sure pointers are set to NULL;
 	if (imageWidth == NULL || imageHeight == NULL)
@@ -91,6 +95,7 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 		exit(1);
 	}
 
+	//La ligne que l'on lit dans le fichier
 	char line[SIZELINE];
 
 	//Il faut malloc l'output en fonction de la taille de l'image
@@ -101,44 +106,56 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 	while(fgets(line, SIZELINE, file) != NULL)
 	{
 		//A l'interieur de cette boucle, on lit mot à mot
-		int column = 0;
-		int bytesRead = 0;
+		int column = 0; //Column est la lettre actuellement testée dans line
+		int wordCharNumber = 0; //L'emplacement dans lequel ajouter la nouvelle valeur dans le mot couramment lu
 		int R, G, B; //Sont remplis pas à pas si image en couleur
 
 		char word[3]; //255 max -> 3 caractères
+		// word[2] -> unités
+		// word[1] -> dizaines
+		// word[0] -> centaines
+		//On initialise la valeur à 0
+		word[0] = '0';
+		word[1] = '0';
+		word[2] = '0';
 
 		//Ici, on s'occuppe des lettres
-		while(column < strlen(line))
+		while(column < (strlen(line) /* - endchars */))
 		{
-			if (line[column] == ' ')
+			if ((line[column] == ' ' || line[column] == '\n' || line[column] == '\0') && column != 0)
 			{
 				bytesRead++;
+				wordCharNumber = 0; //On recommence à écrire dans le nombre des unités
 				if (*color == 1) //Si c'est noir et blanc
 				{
 					character tmp;
-					if (word[0] == '0') //Si c'est blanc
+					if (word[2] == '0') //Si c'est blanc
 					{
 						tmp.rgb.R = 255;
 						tmp.rgb.G = 255;
 						tmp.rgb.B = 255;
+						tmp.c = ' ';
 					}
 					else //Si c'est noir
 					{
 						tmp.rgb.R = 0;
 						tmp.rgb.G = 0;
 						tmp.rgb.B = 0;
+						tmp.c = '#';
 					}
 
+					//Ces variables correspondent à l'endroit pù l'on écrit dans le tableau
 					currLine = (bytesRead - 1) % *imageWidth;
-					currColumn = bytesRead / *imageWidth;
-					//printf("%d\n", currLine);
-					//printf("%d\n", currColumn);
+					currColumn = (bytesRead - 1)/ *imageWidth;
+
+					//printf("word contains %c%c%c\n", word[0], word[1], word[2]);
+					//printf("writing to : %d %d value %c - colonne %d\n", currLine, currColumn, word[2], column);
 
 					(*output)[currLine][currColumn] = tmp;
 				}
 				else //si c'est RGB
 				{
-					int tmp100 = word[0] - '0';
+					int tmp100 = word[0] - '0'; //TODO check l'ordre des chiffres après l'update 2-
 					int tmp10 = word[1] - '0';
 					int tmp1 = word[2] - '0';
 
@@ -159,7 +176,7 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 						tmp.rgb.G = G;
 						tmp.rgb.B = B;
 
-						*output[bytesRead % *imageWidth][(int)bytesRead / *imageWidth] = tmp;
+						(*output)[bytesRead % *imageWidth][(int)bytesRead / *imageWidth] = tmp;
 					}
 				}
 				
@@ -167,15 +184,28 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 				word[0] = '0';
 				word[1] = '0';
 				word[2] = '0';
-				printf("DEBUG %d\n", bytesRead);
 			}
-			else
+			else //Si la lettre que l'on teste n'est pas un espace
 			{
-				word[column] = line[column];
+				word[2 - wordCharNumber] = line[column];
+				wordCharNumber++;//On écrit à la puissance de 10 supérieure
+				
+				if (wordCharNumber > 2)
+				{
+					puts("Erreur, une valeur est supérieure à 1000.\n");
+					exit(1);
+				}
+
+				//printf("else w%c\n", word[column]);
+				//printf("else l%c\n", word[column]);
+				//printf("else len%d\n", ((int)strlen(line)) - endLineChars);
+
 			}
 			column++;
 		}
+		printf("colonne vaut %d\n", column);
 	}
+	printf("DEBUG %d\n", bytesRead);
 }
 
 void readPBM(char fileName[], character *** output)

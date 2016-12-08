@@ -17,3 +17,15 @@ void freeTable(int **array, int nbLin){
 	}
 	free(array);*/
 }
+
+void printArray(character ** array, int nbLin, int nbCol)
+{
+	for (int i = 0; i < nbCol; ++i)
+	{
+		for (int j = 0; j < nbLin; ++j)
+		{
+			putchar(array[j][i].c);
+		}
+		printf("\n");
+	}
+}
