@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:45:13 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/09 11:07:35 by mduhoux                                  */
+/*   Updated: 2016/12/09 14:30:39 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@
 //fonction empty pour nettoyer le terminal
 void	empty();
 
-//focntion randomNumber pour definir un chiffre aleatoire dans le but d'executer un saver aleatoirement
-int		randomNumber(void);
+//focntion randomSaver pour definir un chiffre aleatoire dans le but d'executer un saver aleatoirement
+int		randomSaver(void);
+
+//fonction randomImage pour selectionner aleatoirement l'image du saver 1
+int		randomImage(void);
 
 //fonction logs qui cree et modifie le fichier de logs du saver
 int		logs(char *ex);
