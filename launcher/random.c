@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   launcher.h                                      __       __ __	          */
+/*   random.c                                        __       __ __	          */
 /*                                                  |    \  /   |       /\    */
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
-/*   Created: 2016/12/07 15:45:13 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/09 10:32:47 by mduhoux                                  */
+/*   Created: 2016/12/09 09:58:40 by mduhoux        |__  /  \ __|__  /      \ */
+/*   Updated: 2016/12/09 10:29:50 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
+#include "launcher.h"
 
-//fonction empty pour nettoyer le terminal
-void	empty();
+int	randomNumber(void)
+{
+	int randomNumber;
+	srand(time(NULL));
 
-//focntion randomNumber pour definir un chiffre aleatoire dans le but d'executer un saver aleatoirement
-int		randomNumber(void);
+	randomNumber = rand()%3+1;
+	return randomNumber;
 
-//fonction logs qui cree et modifie le fichier de logs du saver
-int		logs(char *ex);
+}

@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:57:35 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/07 19:13:46 by mduhoux                                  */
+/*   Updated: 2016/12/09 10:32:01 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		logs(char *ex)
 	t = localtime(&timestamp);		//ici on initialise les valeurs de la structure t
 									//au temps local de l'ordinateur
 
-	level = strtok(ex, "ex.");
+	level = strtok(ex, "ex.");		//tri de l'argument pour enlever le ex de ex1 et le .C de ex1.c
 
 	FILE* file = NULL;				
 
