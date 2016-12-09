@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "struct_character.h"
+#include "struct_image.h"
 #include "doubleArrayMemory.h"
 
 //readMetaData
@@ -36,4 +37,4 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 //readPBM
 // INPUT fileName - la destination vers le fichier PBM
 // OUTPUT output - un tableau double entrée de charactères correspondant à l'image.
-void readPBM(char fileName[], character *** output);
+void readPBM(char fileName[], image * output);
