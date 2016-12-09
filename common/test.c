@@ -4,21 +4,25 @@
 
 int main()
 {
-	image testImage;
+	image testImage1;
+	image testImage2;
+	image testImage3;
 	
-	//FILE* file = fopen("ex2.pbm", "r");
+	//Dimensions différentes
+	readPBM("ex1.pbm", &testImage1);
 
-	//readMetaData(file, &x, &y, &RGB);
+	//Dimensions identiques
+	readPBM("ex2.pbm", &testImage2);
 
-	//printf("x: %d\ny: %d\nRGB: %d\n", x, y, RGB);
+	//Couleur
+	readPBM("ex4_couleur.ppm", &testImage3);
 	
-	//fclose(file);
-
-
-	//readMetaData OK!
-	readPBM("ex2.pbm", &testImage);
-	printImage(&testImage);
-	printf("\x1b[38;2;255;00;0mTRUECOLOR\x1b[0m\n");
+	printImage(&testImage1);
+	printImage(&testImage2);
+	printImage(&testImage3);
+	
+	int test = 255;
+	printf("\x1b[38;2;255;%d;0mTRUECOLOR\x1b[0m\n", test);
 
 	return 0;
 }
