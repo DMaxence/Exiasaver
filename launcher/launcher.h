@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:45:13 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/09 15:55:52 by mduhoux                                  */
+/*   Updated: 2016/12/09 18:31:06 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <time.h>
 #include <sys/types.h>
 #include <dirent.h>
+#include <errno.h>
+#include <unistd.h>
 
 //fonction empty pour nettoyer le terminal
 void	empty(void);
