@@ -14,6 +14,34 @@
 
 #define SIZELINE 255
 
+//wordToInt
+//A utiliser UNIQUEMENT DANS CE CONTEXTE
+// INPUT word - le tableau à convertir
+int wordToInt(char word[3])
+{
+	//Exemple pour 73
+	//[2] => '7' 
+	//[1] => '3'
+	//[0] => 0 de base
+
+	if (word[0] == 0 && word[1] == 0) //Il n'y a qu'un chiffre
+	{
+		return word[2] - '0';
+	}
+	else if (word[0] == 0)//Il y a deux chiffres
+	{
+		return 10 * (word[2] - '0') +
+			1 * (word[1] - '0'); 
+	}
+	else //Il y a trois chiffres
+	{
+		return 100 * (word[2] - '0') +
+			10 * (word[1] - '0') +
+			1 * (word[0] - '0');
+	}
+
+}
+
 void readMetaData(FILE * file, int * x, int * y, int * RGB)
 {
 	
@@ -153,9 +181,9 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 		// word[1] -> dizaines
 		// word[0] -> centaines
 		//On initialise la valeur à 0
-		word[0] = '0';
-		word[1] = '0';
-		word[2] = '0';
+		word[0] = 0;
+		word[1] = 0;
+		word[2] = 0;
 
 		//Ici, on s'occuppe des lettres
 		while(column < (strlen(line)))
@@ -211,15 +239,21 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 					//on met à jour à chauqe byte lu, et non par groupe de 3
 					if (bytesRead % 3 == 1) // Si on s'occupe du rouge
 					{
-						R = 100 * (word[2] - '0') + 10 * (word[1] - '0') + (word[0] - '0'); //On a converti les trois caractères du mot en int
+
+
+						//R = 100 * (word[2] - '0') + 10 * (word[1] - '0') + (word[0] - '0'); //On a converti les trois caractères du mot en int
+						R = wordToInt(word);
 					}
 					else if (bytesRead % 3 == 2) // Si on s'occupe du vert
 					{
-						G = 100 * (word[2] - '0') + 10 * (word[1] - '0') + (word[0] - '0'); //On a converti les trois caractères du mot en int
+						//G = 100 * (word[2] - '0') + 10 * (word[1] - '0') + (word[0] - '0'); //On a converti les trois caractères du mot en int
+						G = wordToInt(word);
 					}
 					else if (bytesRead % 3 == 0)
 					{
-						B = 100 * (word[2] - '0') + 10 * (word[1] - '0') + (word[0] - '0'); //On a converti les trois caractères du mot en int
+						//B = 100 * (word[2] - '0') + 10 * (word[1] - '0') + (word[0] - '0'); //On a converti les trois caractères du mot en int
+
+						B = wordToInt(word);
 
 						tmp.rgb.R = R;
 						tmp.rgb.G = G;
@@ -236,9 +270,9 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 				}
 				
 				//Une fois qu'on a lu un mot, on clear l'ancien mot en mémoire
-				word[0] = '0';
-				word[1] = '0';
-				word[2] = '0';
+				word[0] = 0;
+				word[1] = 0;
+				word[2] = 0;
 				
 				//puts("word reset a 0");
 			}

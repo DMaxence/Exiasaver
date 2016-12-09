@@ -13,8 +13,4 @@ character **createTable(int nbLin, int nbCol);
 //On utilise cette fonction pour libérer la mémoire d'un tableau 2D
 // INPUT / OUTPUT array - le tableau
 // INPUT nbLin - le nombre de lignes du tableau
-void freeTable(int **array, int nbLin);
-
-//On utilise cette fonction pour afficher un tableau 2D
-// INPUT array - Le tableau à afficher
-void printArray(character ** array, int nbLin, int nbCol);
+void freeTable(character **array, int nbLin);
