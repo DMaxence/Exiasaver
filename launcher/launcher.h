@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:45:13 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/09 14:30:39 by mduhoux                                  */
+/*   Updated: 2016/12/09 15:55:52 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <dirent.h>
 
 //fonction empty pour nettoyer le terminal
-void	empty();
+void	empty(void);
 
 //focntion randomSaver pour definir un chiffre aleatoire dans le but d'executer un saver aleatoirement
 int		randomSaver(void);
