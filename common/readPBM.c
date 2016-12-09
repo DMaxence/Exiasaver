@@ -14,15 +14,8 @@
 
 #define SIZELINE 255
 
-void readMetaData(FILE * file, int ** x, int ** y, int ** RGB)
-{
-	//First, we have to make sure pointers are set to NULL;
-	if (*x != NULL || *y != NULL ||  *RGB != NULL)
-	{
-		puts("Erreur de programmation: un pointeur n'est pas nul pour readMetaData\n");
-		exit(1);
-	}
-	
+void readMetaData(FILE * file, int * x, int * y, int * RGB)
+{	
 	
 	char line[SIZELINE];
 	int stop = 0;
@@ -41,8 +34,7 @@ void readMetaData(FILE * file, int ** x, int ** y, int ** RGB)
 		//We just wait for a line that starts with P
 		if (line[0] == 'P')
 		{
-			*RGB = malloc(sizeof(char));
-			**RGB = line[1] - '0'; //Converts char to int
+			*RGB = line[1] - '0'; //Converts char to int
 			stop  = 1;
 		}
 	}
@@ -60,12 +52,10 @@ void readMetaData(FILE * file, int ** x, int ** y, int ** RGB)
 		//We have to get the next line after the magic number that's not a commment
 		if (line[0] != '#')
 		{
-			*x = malloc(sizeof(int));
-			*y = malloc(sizeof(int));
-			**x = 0;
-			**y = 0;
+			*x = 0;
+			*y = 0;
 
-			sscanf(line, "%d %d", *x, *y);
+			sscanf(line, "%d %d", x, y);
 
 			if (*x == 0 || *y == 0)
 			{
@@ -211,12 +201,12 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 void readPBM(char fileName[], character *** output)
 {
 	FILE * file = fopen(fileName, "r");
-	int *x = NULL;
-	int *y = NULL;
-	int *RGB = NULL;
+	int x = 0;
+	int y = 0;
+	int RGB = 0;
 
 	readMetaData(file, &x, &y, &RGB);
-	readPBMFromFile(file, RGB, x, y, output);
+	readPBMFromFile(file, &RGB, &x, &y, output);
 
 	fclose(file);
 }

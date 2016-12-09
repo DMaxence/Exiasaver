@@ -24,7 +24,7 @@
 // INPUT file - file with fopen, must be opened
 // NOTE - only accepts RGB images
 // NOTE - Make sure to pass empty pointers that will be mallocced in this func
-void readMetaData(FILE * file, int ** x, int ** y, int ** RGB);
+void readMetaData(FILE * file, int * x, int * y, int * RGB);
 
 //readPBMFromFile
 // INPUT file - file opended with fopen, and passed through 
