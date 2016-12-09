@@ -1,7 +1,6 @@
 #include "doubleArrayMemory.h"
 
 character **createTable(int nbLin, int nbCol){
-
 	character** theArray;
 	theArray = (character**) malloc(nbCol*sizeof(character*));
 	for (int i = 0; i < nbCol; i++)

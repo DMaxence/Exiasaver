@@ -1,25 +1,24 @@
 #include "readPBM.h"
+#include "struct_image.h"
+#include "printImage.h"
 
 int main()
 {
-	int x;
-	int y;
-	int RGB;
+	image testImage;
 	
-	FILE* file = fopen("ex2.pbm", "r");
+	//FILE* file = fopen("ex2.pbm", "r");
 
-	readMetaData(file, &x, &y, &RGB);
+	//readMetaData(file, &x, &y, &RGB);
 
-	printf("x: %d\ny: %d\nRGB: %d\n", x, y, RGB);
+	//printf("x: %d\ny: %d\nRGB: %d\n", x, y, RGB);
 	
-	fclose(file);
+	//fclose(file);
 
 
 	//readMetaData OK!
-
-	character ** imageArray;
-	readPBM("ex2.pbm", &imageArray);
-	printArray(imageArray, 15, 15);
+	readPBM("ex2.pbm", &testImage);
+	printImage(&testImage);
+	printf("\x1b[38;2;255;00;0mTRUECOLOR\x1b[0m\n");
 
 	return 0;
 }

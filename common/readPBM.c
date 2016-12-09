@@ -91,7 +91,6 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 	//Il faut malloc l'output en fonction de la taille de l'image
 	*output = createTable(*imageWidth, *imageHeight);
 
-
 	//Tants qu'on est pas à la fin du fichier, on lit la ligne suivante	
 	while(fgets(line, SIZELINE, file) != NULL)
 	{
@@ -142,6 +141,7 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 					//printf("writing to : %d %d value %c - colonne %d\n", currLine, currColumn, word[2], column);
 
 					(*output)[currLine][currColumn] = tmp;
+					//printf("%c", (*output)[currLine][currColumn].c); // marche
 				}
 				else //si c'est RGB
 				{
@@ -193,20 +193,29 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 			}
 			column++;
 		}
-		printf("colonne vaut %d\n", column);
+		//printf("colonne vaut %d\n", column);
 	}
-	printf("DEBUG %d\n", bytesRead);
+	//printf("DEBUG %d\n", bytesRead);
 }
 
-void readPBM(char fileName[], character *** output)
+void readPBM(char fileName[], image * output)
 {
 	FILE * file = fopen(fileName, "r");
+
+	//TODO check si bien ouvert
+
 	int x = 0;
 	int y = 0;
 	int RGB = 0;
 
 	readMetaData(file, &x, &y, &RGB);
-	readPBMFromFile(file, &RGB, &x, &y, output);
+
+	output->xPos = 0;
+	output->yPos = 0;
+	output->xDim = x;
+	output->yDim = y;
+
+	readPBMFromFile(file, &RGB, &x, &y, &output->charArray);
 
 	fclose(file);
 }
