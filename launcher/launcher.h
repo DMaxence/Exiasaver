@@ -34,8 +34,10 @@ char*	randomImage(void);
 //fonction logs qui cree et modifie le fichier de logs du saver
 int		logs(char *ex);
 
-//fonction pour determiner la taille du terminal
-int		size_terminal(void);
+//fonction pour récupérer la taille du terminal
+// OUTPUT width - la largeur du terminal
+// OUTPUT height - la hauteur du terminal
+void	getTerminalSize(int * width, int * height);
 
 //fonction qui execute un saver aleatoirement grace a la fonction randomSaver
 int		executeRandom(void);

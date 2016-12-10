@@ -166,7 +166,7 @@ void readPBMFromFile(FILE * file, int * color, int * imageWidth, int * imageHeig
 
 	//Il faut malloc l'output en fonction de la taille de l'image
 	//*output = createTable(*imageWidth, *imageHeight);
-	*output = createTable(*imageHeight, *imageWidth);
+	*output = createTable(*imageWidth, *imageHeight);
 
 	//Tants qu'on est pas à la fin du fichier, on lit la ligne suivante	
 	while(fgets(line, SIZELINE, file) != NULL)

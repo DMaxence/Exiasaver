@@ -26,13 +26,10 @@ int		main(int argc, char *argv[])
 	screenSaverToLaunch = randomSaver();
 
 	//ETAPE 3: Prépare les variables d'environnement pour trouver où se troubent les dossiers nécessaires
-	getEnvFolders(screenSaverToLaunch, &pathToHome, argumentsList);
+	getEnvFolders(screenSaverToLaunch, &pathToHome, argumentsList); 
 
-	//DEBUG 
-
-	printf("%d %s %s\n", screenSaverToLaunch, pathToHome, argumentsList[0]);
-
-	///DBG
+	//Cette ligne permet de vérifier les settings générés et la bonne lecture des vars d'envt
+	//printf("%d %s %s\n", screenSaverToLaunch, pathToHome, argumentsList[0]);
 
 	//ETAPE 4: Finaliser la liste des arguments en ajoutant au chemin des dossiers les noms d'images
 

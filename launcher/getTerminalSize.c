@@ -12,12 +12,14 @@
 
 #include "launcher.h"
 
-int		size_terminal(void)
+void	getTerminalSize(int * width, int * height)
 {
 	struct winsize size_terminal;
 	ioctl(0, TIOCGWINSZ, &size_terminal);
 
-	printf("lines : %d\n", size_terminal.ws_row);
-	printf("columns : %d\n", size_terminal.ws_col);
-	return 0;
+	//printf("lines : %d\n", size_terminal.ws_row);
+	//printf("columns : %d\n", size_terminal.ws_col);
+
+	*width = size_terminal.ws_col;
+	*height = size_terminal.ws_row;
 }
