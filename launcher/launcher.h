@@ -27,7 +27,7 @@ void	empty(void);
 int		randomSaver(void);
 
 //fonction randomImage pour selectionner aleatoirement l'image du saver 1
-int		randomImage(void);
+char*		randomImage(void);
 
 //fonction logs qui cree et modifie le fichier de logs du saver
 int		logs(char *ex);
