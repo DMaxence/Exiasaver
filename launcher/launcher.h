@@ -22,9 +22,10 @@
 #include <sys/ioctl.h>
 
 //fonction empty pour nettoyer le terminal
-void	empty(void);
+void	emptyTerminal(void);
 
 //fonction randomSaver pour definir un chiffre aleatoire dans le but d'executer un saver aleatoirement
+//Dans les faits, cette fonction renvoie un int aléatoire entre 1 et 3 compris
 int		randomSaver(void);
 
 //fonction randomImage pour selectionner aleatoirement l'image du saver 1
@@ -40,4 +41,9 @@ int		size_terminal(void);
 int		executeRandom(void);
 
 //fonction pour recuperer les variables environnementales
-int		var_env(int saver);
+//Prépare la liste des dossiers nécessaires
+//Trouve le chemin vers le répertoire contenant les exécutables
+// INPUT saver - Le sreensaver à lancer (1 -> statique, 2 -> dynamique, 3 -> interactif)
+// OUTPUT homeFolder - Le chemin vers le répertoire contenant les executables
+// OUTPUT argumentsList - la liste des dossiers contenant les images etc
+void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[3]);

@@ -12,7 +12,7 @@
 
 #include "launcher.h"
 
-void	empty(void)
+void	emptyTerminal(void)
 {
 	system("clear");
 }

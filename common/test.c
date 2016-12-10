@@ -25,9 +25,6 @@ int main()
 	deleteImage(&testImage1);
 	deleteImage(&testImage2);
 	deleteImage(&testImage3);
-	
-	int test = 255;
-	printf("\x1b[38;2;255;%d;0mTRUECOLOR\x1b[0m\n", test);
 
 	return 0;
 }

@@ -14,10 +14,5 @@
 
 int	randomSaver(void)
 {
-	int randomNumber;
-	char path;
-	srand(time(NULL));
-
-	randomNumber = rand()%3+1;
-	return randomNumber;
+	return rand() % 3 + 1;
 }
