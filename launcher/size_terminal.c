@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 14:36:52 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/10 14:55:52 by mduhoux                                  */
+/*   Updated: 2016/12/10 15:25:43 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		size_terminal(void)
 {
 	struct winsize size_terminal;
-	ioctl(0, TIOCGWINSZ, &size_terminal;
+	ioctl(0, TIOCGWINSZ, &size_terminal);
 
 	printf("lines : %d\n", size_terminal.ws_row);
 	printf("columns : %d\n", size_terminal.ws_col);

@@ -6,13 +6,13 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 09:54:30 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/10 12:26:52 by mduhoux                                  */
+/*   Updated: 2016/12/10 15:10:52 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "launcher.h"
 
-int		main(void)
+int		executeRandom(void)
 {
 	char *path;
 	pid_t pid_child;
