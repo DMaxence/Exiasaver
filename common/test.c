@@ -3,6 +3,7 @@
 #include "deleteImage.h"
 #include "printImage.h"
 #include "createUniformImage.h"
+#include "mergeImages.h"
 
 int main()
 {
@@ -19,7 +20,14 @@ int main()
 
 	//Une image uniforme de la taille du terminal
 	testTerm = createUniformImageTermSize('o');
-	testTerm->charArray[9][2].c = '#'; //For test, check si x et y pas inversés (ancien bug)
+	
+	testImage2.xPos = 10;
+	testImage2.yPos = 5;
+	
+	mergeImages(*testTerm, testImage2);
+
+	//printf("%c\n", testTerm->charArray[10][11].c);
+
 
 	//Couleur
 	readPBM("color.ppm", &testImage3);
@@ -32,9 +40,9 @@ int main()
 	//Même si ce ne sont pas des pointeurs, il faut delete les images
 	//Pour supprimer les tableaux de char a linterieur
 	deleteImage(&testImage1);
-	//deleteImage(&testImage2);
-	//deleteImage(&testImage3);
-	//deleteImage(testTerm);
+	deleteImage(&testImage2);
+	deleteImage(&testImage3);
+	deleteImage(testTerm);
 
 	return 0;
 }

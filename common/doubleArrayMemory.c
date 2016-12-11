@@ -22,5 +22,6 @@ void freeTable(character **array, int nbCol){
 	//{
 	//	free(array[i]);
 	//}
+	free(*array);
 	free(array);
 }
