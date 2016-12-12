@@ -5,7 +5,7 @@
 #include "createUniformImage.h"
 #include "mergeImages.h"
 #include "centerImage.h"
-
+#include "stringToImage.h"
 
 //Renommer à main pour faire des tests
 int test_main()
@@ -14,6 +14,7 @@ int test_main()
 	image testImage2;
 	image testImage3;
 	image* testTerm = NULL;
+	image * teststring = NULL;
 	
 	//Dimensions différentes
 	readPBM("ex1.pbm", &testImage1);
@@ -30,7 +31,7 @@ int test_main()
 	centerImage(*testTerm, testImage2);
 
 	//printf("%c\n", testTerm->charArray[10][11].c);
-
+	teststring = stringToImage("lalala");
 
 	//Couleur
 	readPBM("color.ppm", &testImage3);
@@ -39,7 +40,7 @@ int test_main()
 	printImage(&testImage2);
 	printImage(&testImage3);
 	printImage(testTerm);
-
+	printImage(teststring);
 	//Même si ce ne sont pas des pointeurs, il faut delete les images
 	//Pour supprimer les tableaux de char a linterieur
 	deleteImage(&testImage1);
