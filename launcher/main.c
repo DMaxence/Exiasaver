@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 15:03:32 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 13:10:30 by mduhoux                                  */
+/*   Updated: 2016/12/12 13:16:07 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int		main(int argc, char *argv[])
 	strcat(argumentsList[0], imageName);
 	free(imageName);
 	//ETAPE 5: clear le terminal
-
-	//ETAPE 6: Executer le fond d'ecran
-
+	emptyTerminal();
+	//ETAPE 6: Executer le fond d'ecran	
+	executeSaver(pathToHome, screenSaverToLaunch, argumentsList);	
 	//ETAPE 7: Si le lancement est réussi, faire un log (s'il échoue aussi en fait)
 
 	//ETAPE 8: Attendre que l'utilisateur appuie sur une touche, et gérer si il faut envoyer SIGKILL

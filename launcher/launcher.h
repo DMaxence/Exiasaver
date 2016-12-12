@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:45:13 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 13:03:54 by mduhoux                                  */
+/*   Updated: 2016/12/12 13:28:24 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		logs(char *ex);
 void	getTerminalSize(int * width, int * height);
 
 //fonction qui execute un saver aleatoirement grace a la fonction randomSaver
-int		executeRandom(void);
+int		executeSaver(char *pathToHome, int screenSaverToLaunch, char *argumentsList[4]);
 
 //fonction pour recuperer les variables environnementales
 //Prépare la liste des dossiers nécessaires
@@ -48,4 +48,4 @@ int		executeRandom(void);
 // INPUT saver - Le sreensaver à lancer (1 -> statique, 2 -> dynamique, 3 -> interactif)
 // OUTPUT homeFolder - Le chemin vers le répertoire contenant les executables
 // OUTPUT argumentsList - la liste des dossiers contenant les images etc
-void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[3]);
+void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4]);

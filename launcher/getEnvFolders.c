@@ -6,13 +6,13 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 15:37:18 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/10 16:35:19 by mduhoux                                  */
+/*   Updated: 2016/12/12 13:26:52 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "launcher.h"
 
-void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[3])
+void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4])
 {
 	char* tmp;
 	switch(saver) //Mettre switch saver quand on est sur que ca marche
@@ -30,7 +30,7 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[3])
 			{
 				strcpy(argumentsList[0], getenv("PWD"));
 			}
-			
+			argumentsList[1] = NULL;
 			break;
 
 		//Pour le dynamique, il faut donner le répertoire d'images,
@@ -73,6 +73,7 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[3])
 			{
 				strcpy(argumentsList[2], "10");
 			}
+			argumentsList[3] = NULL;
 			break;
 
 		//Pour le scrsvr interactif, il faut donner uniquement le répertoire contenant l'image
@@ -87,8 +88,8 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[3])
 			else
 			{
 				strcpy(argumentsList[0], getenv("PWD"));
-			}
-			
+			}	
+			argumentsList[1] = NULL;
 			break;
 
 		default:

@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   exec.c                                          __       __ __	          */
+/*   executeSaver.c                                  __       __ __	          */
 /*                                                  |    \  /   |       /\    */
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 09:54:30 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/10 15:10:52 by mduhoux                                  */
+/*   Updated: 2016/12/12 13:25:23 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "launcher.h"
 
-int		executeRandom(void)
+int		executeSaver(char *pathToHome, int screenSaverToLaunch, char *argumentsList[4])
 {
 	char *path;
 	pid_t pid_child;
 	pid_child = fork();
 	
-	switch(randomSaver())
+	switch(screenSaverToLaunch)
 	{
 		case 1:
-			path = "../static/main.c\n";
+			strcat(pathToHome, "exiasaver1");
 		break;
 		case 2:
-			path = "../dynamic/main.c\n";
+			strcat(pathToHome, "exiasaver2");
 		break;
 		case 3:
-			path = "../interactive/main.c\n";
+			strcat(pathToHome, "exiasaver3");
 		break;
 	}
 
@@ -39,8 +39,7 @@ int		executeRandom(void)
 		break;
 
 		case 0:
-			printf("path : %s", path);
-		//	execl(randomSaver(), randomImage(), (char*) NULL);
+			execv(pathToHome, argumentsList);
 		break;
 
 		default:
