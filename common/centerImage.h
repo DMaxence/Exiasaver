@@ -1,5 +1,5 @@
 #pragma once
-#include "mergeImage.h"
+#include "mergeImages.h"
 
 
 //centerImage

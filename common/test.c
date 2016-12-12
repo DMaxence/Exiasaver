@@ -4,6 +4,7 @@
 #include "printImage.h"
 #include "createUniformImage.h"
 #include "mergeImages.h"
+#include "centerImage.h"
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
 	testImage2.xPos = 10;
 	testImage2.yPos = 5;
 	
-	mergeImages(*testTerm, testImage2);
+	centerImage(*testTerm, testImage2);
 
 	//printf("%c\n", testTerm->charArray[10][11].c);
 
