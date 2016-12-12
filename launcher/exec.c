@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 09:54:30 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 13:25:23 by mduhoux                                  */
+/*   Updated: 2016/12/12 14:08:48 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		executeSaver(char *pathToHome, int screenSaverToLaunch, char *argumentsList
 		break;
 
 		case 0:
+			logs(screenSaverToLaunch, argumentsList);
 			execv(pathToHome, argumentsList);
 		break;
 

@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 15:03:32 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 13:16:07 by mduhoux                                  */
+/*   Updated: 2016/12/12 14:09:40 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		main(int argc, char *argv[])
 
 	int screenSaverToLaunch;
 	char * pathToHome = NULL;
-	char * argumentsList[3]; //Pas plus de trois arguments pour le scrsvr dynamique
+	char * argumentsList[4]; //Pas plus de trois arguments pour le scrsvr dynamique
 	char * imageName;
 
 	//ETAPE 2: Se décider sur quel ecran de veille choisir
@@ -41,7 +41,7 @@ int		main(int argc, char *argv[])
 	//ETAPE 6: Executer le fond d'ecran	
 	executeSaver(pathToHome, screenSaverToLaunch, argumentsList);	
 	//ETAPE 7: Si le lancement est réussi, faire un log (s'il échoue aussi en fait)
-
+	
 	//ETAPE 8: Attendre que l'utilisateur appuie sur une touche, et gérer si il faut envoyer SIGKILL
 
 	//ETAPE 9: Log de fin d'activité.

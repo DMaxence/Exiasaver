@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:45:13 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 13:28:24 by mduhoux                                  */
+/*   Updated: 2016/12/12 14:09:07 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		randomSaver(void);
 char*	randomImage(char *argumentsList);
 
 //fonction logs qui cree et modifie le fichier de logs du saver
-int		logs(char *ex);
+int		logs(int screenSaverToLaunch, char *argumentsList[4]);
 
 //fonction pour récupérer la taille du terminal
 // OUTPUT width - la largeur du terminal
