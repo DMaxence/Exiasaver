@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:57:35 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 14:12:27 by mduhoux                                  */
+/*   Updated: 2016/12/12 15:28:25 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		logs(int screenSaverToLaunch, char *argumentsList[4])
 			i = 0;
 		break;
 	}
-	sprintf(text, "%02u/%02u/%04u %02u:%02u:%02u;%d;%s;\n", t->tm_mday, t->tm_mon, t->tm_year, t->tm_hour, t->tm_min, t->tm_sec, screenSaverToLaunch, argumentsList[i]);			//concatenation des dates et des autres parametres dans text
+	sprintf(text, "%02u/%02u/%04u %02u:%02u:%02u;%d;%s;\n", t->tm_mday, t->tm_mon,1900 + t->tm_year, t->tm_hour, t->tm_min, t->tm_sec, screenSaverToLaunch, argumentsList[i]);			//concatenation des dates et des autres parametres dans text
 
 	fputs(text, file);				//ecriture de text dans le fichier log.txt
 
