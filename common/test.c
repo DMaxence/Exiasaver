@@ -6,7 +6,9 @@
 #include "mergeImages.h"
 #include "centerImage.h"
 
-int main()
+
+//Renommer à main pour faire des tests
+int test_main()
 {
 	image testImage1;
 	image testImage2;
