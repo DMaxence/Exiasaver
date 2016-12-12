@@ -6,13 +6,13 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/12 15:16:08 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 17:22:41 by mduhoux                                  */
+/*   Updated: 2016/12/12 17:24:20 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "launcher.h"
 
-int		main()
+int		printStats()
 {
 	int choice;
 	FILE *file;

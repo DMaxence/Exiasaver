@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:45:13 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 14:09:07 by mduhoux                                  */
+/*   Updated: 2016/12/12 17:24:48 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,6 @@ int		executeSaver(char *pathToHome, int screenSaverToLaunch, char *argumentsList
 // OUTPUT homeFolder - Le chemin vers le répertoire contenant les executables
 // OUTPUT argumentsList - la liste des dossiers contenant les images etc
 void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4]);
+
+//fonction pour afficher les statistiques
+int		printStats(void);
