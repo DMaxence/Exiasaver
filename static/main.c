@@ -24,16 +24,27 @@
       /*Vérification du paramètre de l'image*/
       if (argc == 2)
       {
-        strcpy (imagename, argv[1]);
+      strcpy (imagename, argv[1]);
 
 
       }
+       //Déclaration de la variable de types image
       image *background;
       image *display;
+
+      /*Allocation de mémoire*/
       display = malloc (sizeof(image));
+
+      /*Adaptation de l'image avec le terminal*/
       background = createUniformImageTermSize(' ');
+
+      /*Converti le fichier de façon à pouvoir afficher une image*/
       readPBM (imagename, display);
+
+      /*Permet de centrer l'image sur le terminal*/
       centerImage (*background, *display);
+
+      /*Permet d'afficher l'image*/
       printImage (background);
       return 0;
 
