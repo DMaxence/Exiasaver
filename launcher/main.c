@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 15:03:32 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 14:09:40 by mduhoux                                  */
+/*   Updated: 2016/12/12 14:16:59 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,9 @@ int		main(int argc, char *argv[])
 	emptyTerminal();
 	//ETAPE 6: Executer le fond d'ecran	
 	executeSaver(pathToHome, screenSaverToLaunch, argumentsList);	
-	//ETAPE 7: Si le lancement est réussi, faire un log (s'il échoue aussi en fait)
 	
-	//ETAPE 8: Attendre que l'utilisateur appuie sur une touche, et gérer si il faut envoyer SIGKILL
+	//ETAPE 7: Attendre que l'utilisateur appuie sur une touche, et gérer si il faut envoyer SIGKILL
 
-	//ETAPE 9: Log de fin d'activité.
-
-	//ETAPE 10: Quitter
+	//ETAPE 8: Quitter
 	return 0;
 }
