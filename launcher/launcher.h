@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/07 15:45:13 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/10 16:25:33 by mduhoux                                  */
+/*   Updated: 2016/12/12 13:03:54 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	emptyTerminal(void);
 int		randomSaver(void);
 
 //fonction randomImage pour selectionner aleatoirement l'image du saver 1
-char*	randomImage(void);
+char*	randomImage(char *argumentsList);
 
 //fonction logs qui cree et modifie le fichier de logs du saver
 int		logs(char *ex);

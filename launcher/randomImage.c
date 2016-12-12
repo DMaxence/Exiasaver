@@ -6,23 +6,24 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 09:58:40 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/09 16:30:56 by mduhoux                                  */
+/*   Updated: 2016/12/12 13:04:13 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "launcher.h"
 
-char * randomImage(void)
+char * randomImage(char *argumentsList)
 {
 	DIR *directory;
 	struct dirent *dir;
 	int randomNumber;
 	char * filenames[100];
 	char * filename;
-	int i , j;
+	int i;
+	int	j;
 	
 	i = 0;
-	directory = opendir("../img/");
+	directory = opendir(argumentsList);
 	if (directory)									//boucle qui copie le nom des repertoires
 	{
 		while ((dir = readdir(directory)) != NULL)	//dans un tableau afin de selectionner
@@ -39,7 +40,6 @@ char * randomImage(void)
 
 
 
-	srand(time(NULL));
 	randomNumber = rand()%i;
 
 	filename = malloc(strlen(filenames[randomNumber]) * sizeof(char));
