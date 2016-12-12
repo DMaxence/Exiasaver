@@ -19,12 +19,26 @@
 #include "../common/printImage.h"
 #include "../common/readPBM.h"
 #include "../common/createUniformImage.h"
+#include "../common/mergeImages.h"
+#include "../common/deleteImage.h"
 
 int		main(int argc, char *argv[])
 {
 	//ETAPE 0: Déclarer les variables
 	int numberWidth;
 	int numberHeight;
+
+	image numbers[11]; //Ce tableau va contenir les images
+	image * termBackground;
+	char *imgPath;
+
+	//Les variables contenant l'index des 
+	int h0;
+	int h1;
+	int m0;
+	int m1;
+	int s0;
+	int s1;
 
 	numberHeight = 0;
 	numberWidth = 0;
@@ -66,9 +80,7 @@ int		main(int argc, char *argv[])
 	//ETAPE 2: Charger en mémoire les images des numéros
 
 	//La 11e case sert à stocker les ':'
-	image numbers[11];
-	image * termBackground;
-	char *imgPath;
+
 	imgPath = malloc(strlen(argv[1]) * sizeof(char) + 6 * sizeof(char)); //Plus 6 char pour le nom de l'image
 
 	strcpy(imgPath, argv[1]);
@@ -96,12 +108,80 @@ int		main(int argc, char *argv[])
 	termBackground = createUniformImageTermSize(' ');
 
 	//TANT QUE PAS APPUYE SUR TOUCHE
+	//while (1)
+	{
 
 		//ETAPE 4: Trouver l'heure 
+		time_t timestamp;				//declaration de la variable timestamp de type time_t
+		struct tm * t;					//declaration de la structure t de type tm
+										//ces variables servent a enregistrer les dates
+
+		timestamp = time(NULL);			//on definit le timestamp en timestamp actuel
+										//les valeurs enregistrees de dans correspondent au systeme
+		t = localtime(&timestamp);		//ici on initialise les valeurs de la structure t
+										//au temps local de l'ordinateur
+
 
 		//ETAPE 4.5: A faire + tard: redimensionner les numéros
 
 		//ETAPE 5: Créer une image contenant l'heure
+
+		//7 -> le nombre d'espaces
+		//2 -> la taille des ':'
+		image * hourBG = createUniformImage(' ', 6 * numberWidth + 7 + 2, numberHeight);
+
+		h0 = (int)t->tm_hour / 10;
+		
+		h1 = (int)t->tm_hour;
+		while(h1 > 9)
+			h1 -= 10;
+
+		m0 = (int)t->tm_min / 10;
+
+		m1 = (int)t->tm_min;
+		while(m1 > 9)
+			m1 -= 10;
+
+		s0 = (int)t->tm_sec / 10;
+
+		s1 = (int)t->tm_sec;
+		while(s1 > 9)
+			s1 -= 10;
+
+
+		numbers[h0].xPos = 0;
+		numbers[h0].yPos = 0;
+		mergeImages(*hourBG, numbers[h0]);
+
+		numbers[h1].xPos = numberWidth + 1;
+		numbers[h1].yPos = 0;
+		mergeImages(*hourBG, numbers[h1]);
+
+		numbers[10].xPos = 2 * numberWidth + 2;
+		numbers[10].yPos = 0;
+		mergeImages(*hourBG, numbers[10]);
+
+		numbers[m0].xPos = 2 * numberWidth + 4;
+		numbers[m0].yPos = 0;
+		mergeImages(*hourBG, numbers[m0]);
+
+		numbers[m1].xPos = 3 * numberWidth + 5;
+		numbers[m1].yPos = 0;
+		mergeImages(*hourBG, numbers[m1]);
+
+		numbers[10].xPos = 4 * numberWidth + 7;
+		numbers[10].yPos = 0;
+		mergeImages(*hourBG, numbers[10]);
+
+		numbers[s0].xPos = 4 * numberWidth + 8;
+		numbers[s0].yPos = 0;
+		mergeImages(*hourBG, numbers[s0]);
+
+		numbers[s1].xPos = 5 * numberWidth + 9;
+		numbers[s1].yPos = 0;
+		mergeImages(*hourBG, numbers[s1]);
+
+
 
 		//ETAPE 6: Centrer l'image de l'heure sur celle du terminal
 
@@ -109,6 +189,11 @@ int		main(int argc, char *argv[])
 
 		//ETAPE 7: Afficher l'image
 
+		printImage(hourBG);
+
+		//deleteImage(tmpimg);
+
+	}
 	//FIN TANT QUE
 
 	//ETAPE 8: Quitter
