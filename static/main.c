@@ -46,6 +46,8 @@
 
       /*Permet d'afficher l'image*/
       printImage (background);
+
+      getchar();
       return 0;
 
 
