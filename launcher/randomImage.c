@@ -24,10 +24,14 @@ char * randomImage(char *argumentsList)
 	
 	i = 0;
 	directory = opendir(argumentsList);
-	if (directory)									//boucle qui copie le nom des repertoires
+
+	/*On vérifie que ce soit bien ouvert*/
+	if (directory)
 	{
-		while ((dir = readdir(directory)) != NULL)	//dans un tableau afin de selectionner
-		{											//aleatoirement un fichier d'image
+		/*On fait une boucle qui copie le nom des répertoires
+		On copie les noms dans un tableau pour selectionner une seule image*/
+		while ((dir = readdir(directory)) != NULL)
+		{
 			if (dir->d_type == DT_REG)
 			{
 				filenames[i] = malloc(strlen(dir->d_name) * sizeof(char));
@@ -38,9 +42,7 @@ char * randomImage(char *argumentsList)
 	}
 	closedir(directory);
 
-
-
-	randomNumber = rand()%i;
+	randomNumber = rand() % i;
 
 	filename = malloc(strlen(filenames[randomNumber]) * sizeof(char));
 

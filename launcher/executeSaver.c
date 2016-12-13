@@ -32,7 +32,7 @@ int		executeSaver(char *pathToHome, int screenSaverToLaunch, char **argumentsLis
 				case 3:
 						strcat(pathToHome, "exiasaver3");
 						logs(screenSaverToLaunch, argumentsList);
-						execl(pathToHome, " ", argumentsList[0], (char *) NULL);
+						execl(pathToHome, " ", argumentsList[0], argumentsList[1], (char * )NULL);
 						break;
 		}
 

@@ -24,7 +24,7 @@ int		printStats()
 
 	while (choice < 5 && choice > 0)
 	{
-		printf("Choisir un critere d'affichage :\n"); //affichage des choix 
+		printf("Choisir un critere d'affichage :\n");
 		printf("1 - date\n");
 		printf("2 - type\n");
 		printf("3 - parametre du saver\n");
@@ -32,16 +32,18 @@ int		printStats()
 		printf("Choix : ");
 		scanf("%d", &choice);
 
-		file = fopen("log.txt", "r");				//ouverture du fichier de logs
+		file = fopen("log.txt", "r");
 
+		/*On vérifie que le fichier soit bien ouvert*/
 		if (file == NULL)
 		{												
 				printf("Fichier non trouve ou inexistant");
-				exit (1);								//erreur si fichier inexistant
+				exit (1);
 		}
-		fgets(string, 255, file);
 
-		switch (choice)								//taches a effectuer sinon
+		fgets(string, 255, file);
+		
+		switch (choice)
 		{
 			case 1:
 				while (fgets(string, 255, file) != NULL)
@@ -57,9 +59,6 @@ int		printStats()
 				printf("\n");
 				break;
 			case 3:
-			//	fgets(string, 255, file);
-			//	strtok(string, ";");
-			//	if (strtok(NULL, ";") == "1")
 
 				while (fgets(string, 255, file) != NULL)
 				{

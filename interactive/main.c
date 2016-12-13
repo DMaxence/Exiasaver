@@ -25,7 +25,7 @@
 
 int		main(int argc, char *argv[])
 {
-	//Déclaration des variables
+	/*Déclaration des variables*/
 	int initialPositionX;
 	int initialPositionY;
 	int backgroundWidth;
@@ -38,21 +38,22 @@ int		main(int argc, char *argv[])
 	image planePositions[4];
 	srand(time(0));
 
-	//Si aucun argument n'est donné
+	/*Si aucun argument n'est donné*/
 	if (argc == 1)
 	{
 		printf("Veuillez donner le repertoire contenant les images de l'avion argument.\n");
 		exit(1);
 	}
-	else if (argc == 2) //Un argument, le répertoire contenant les images de l'avion
+	else if (argc == 2)
 	{
 		printf("ATTENTION: Vous n'avez donne qu'un argument!\nJ'assume qu'il s'agit du chemin vers le dossier contenenant les images.\n");
 		initialPositionY = 0;
 		initialPositionX = 0;
 	}
-	else if(argc == 3) //Si il y a deux argument
+	else if(argc == 3)
 	{
 		sscanf(argv[2], "%dx%d", &initialPositionX, &initialPositionY);
+		printf("POSITION INITIALE %d %d \n", initialPositionX, initialPositionY);
 
 		if (initialPositionX < 0 || initialPositionY < 0 || initialPositionX > 80 || initialPositionY > 23)
 		{
@@ -61,35 +62,35 @@ int		main(int argc, char *argv[])
 		}
 	}
 
-	//Début du programme
-	//Charger en mémoire les images des 4 positions de l'avion
+	/*Début du programme
+	Charger en mémoire les images des 4 positions de l'avion*/
 
 	imgPath = malloc(strlen(argv[1]) * sizeof(char) + 6 * sizeof(char)); //Plus 6 char pour le nom de l'image
 
-	//Position haut
+	/*Position haut*/
 	strcpy(imgPath, argv[1]);
 	strcat(imgPath, "u.pbm");
 	readPBM(imgPath, &planePositions[0]);
 
-	//Position bas
+	/*Position bas*/
 	strcpy(imgPath, argv[1]);
 	strcat(imgPath, "d.pbm");
 	readPBM(imgPath, &planePositions[1]);
 	
-	//Position droite
+	/*Position droite*/
 	strcpy(imgPath, argv[1]);
 	strcat(imgPath, "r.pbm");
 	readPBM(imgPath, &planePositions[2]);
 
-	//Position gauche
+	/*Position gauche*/
 	strcpy(imgPath, argv[1]);
 	strcat(imgPath, "l.pbm");
 	readPBM(imgPath, &planePositions[3]);
 
 	free(imgPath);
 
-	//On a maintenant les images de l'avion chargées.
-	//tant que la commande n'est pas la touche 'p'
+	/*On a maintenant les images de l'avion chargées.
+	Tant que la commande n'est pas la touche 'p'*/
 	char * userInput;
 	userInput = malloc(255 * sizeof(char));
 	image * fullTerminalImage;
@@ -103,7 +104,7 @@ int		main(int argc, char *argv[])
 
 	planeImage.charArray = planePositions[rand() % 4].charArray;
 
-	//On trouve les tailles correctes du bakground
+	/*On trouve les tailles correctes du bakground*/
 
 	x = malloc(sizeof(int));
 	y = malloc(sizeof(int));
@@ -136,19 +137,19 @@ int		main(int argc, char *argv[])
 			break;
 	}
 
-	//TANT QUON TAPE PAS P
+	/*TANT QUON TAPE PAS P*/
 	while(userInput[0] != 'p')
 	{
-		//CREER UNE IMAGE TAIILE TERM - 1 EN HAUTEUR
+		/*CREER UNE IMAGE TAIILE TERM - 1 EN HAUTEUR*/
 		fullTerminalImage = createUniformImage(' ', backgroundWidth, backgroundHeight);
 
-		//METTRE LAVION DESSUS
+		/*METTRE LAVION DESSUS*/
 		mergeImagesRepeatOutOfBounds(*fullTerminalImage, planeImage);
 
-		//AFFICHER
+		/*AFFICHER*/
 		printImage(fullTerminalImage);
 
-		//LIRE LINPUT
+		/*LIRE LINPUT*/
 		printf("Direction (p: quitter): ");
 
 		/* La prochaine ligne lit au maximum la taille de userInput depuis l'entrée standard */
@@ -222,10 +223,10 @@ int		main(int argc, char *argv[])
 		}
 
 
-		//DELETE L'IMAGE DE BACKGROUND
+		/*DELETE L'IMAGE DE BACKGROUND*/
 		deleteImage(fullTerminalImage);
 
-	//FIN TANT QUE
+	/*FIN TANT QUE*/
 	}
 
 	return 0;

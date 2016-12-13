@@ -15,9 +15,10 @@
 void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4])
 {
 	char* tmp;
-	switch(saver) //Mettre switch saver quand on est sur que ca marche
+	char positionString[30];
+	switch(saver)
 	{
-		//Pour le scrsvr statique, il faut donner le répertoire contenant les images
+		/*Pour le scrsvr statique, il faut donner le répertoire contenant les images*/
 		case 1:
 			argumentsList[0] = malloc(255 * sizeof(char));
 			tmp = getenv("EXIASAVER1_PBM");
@@ -33,9 +34,8 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4])
 			argumentsList[1] = NULL;
 			break;
 
-		//Pour le dynamique, il faut donner le répertoire d'images,
-		//la taille (de quoi?)
-		//Le nombre de secondes avant d'actualiser l'heure
+		/*Pour le dynamique, il faut donner le répertoire d'images,
+		Le nombre de secondes avant d'actualiser l'heure*/
 		case 2:
 			argumentsList[0] = malloc(255 * sizeof(char));
 			argumentsList[1] = malloc(255 * sizeof(char));
@@ -61,7 +61,7 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4])
 			}
 			else
 			{
-				strcpy(argumentsList[1], "5x3");
+				strcpy(argumentsList[1], "3x5");
 			}
 			
 			tmp = getenv("EXIASAVER2_SLEEP");
@@ -77,7 +77,7 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4])
 			argumentsList[3] = NULL;
 			break;
 
-		//Pour le scrsvr interactif, il faut donner uniquement le répertoire contenant l'image
+		/*Pour le scrsvr interactif, il faut donner le répertoire contenant l'image, et la position initiale*/
 		case 3:
 			argumentsList[0] = malloc(255 * sizeof(char));
 			tmp = getenv("EXIASAVER3_PBM");
@@ -89,8 +89,14 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4])
 			else
 			{
 				strcpy(argumentsList[0], getenv("PWD"));
-			}	
-			argumentsList[1] = NULL;
+			}
+
+			sprintf(positionString, "%dx%d", rand() % 80, rand() % 24);
+
+			argumentsList[1] = malloc(255 * sizeof(char));
+			strcpy(argumentsList[1], positionString);
+
+			argumentsList[2] = NULL;
 			break;
 
 		default:
@@ -100,7 +106,7 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4])
 	}
 
 	
-	//Enfin, on indique là où se trouvent les executables
+	/*Enfin, on indique là où se trouvent les executables*/
 	*homeFolder = malloc(255 * sizeof(char));
 	tmp = getenv("EXIASAVER_HOME");
 	

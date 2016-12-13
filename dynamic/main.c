@@ -29,11 +29,11 @@
 
 int		main(int argc, char *argv[])
 {
-	//ETAPE 0: Déclarer les variables
+	/*ETAPE 0: Déclarer les variables*/
 	int numberWidth;
 	int numberHeight;
 
-	image numbers[11]; //Ce tableau va contenir les images
+	image numbers[11];
 	image * hourBackground;
 	image * textUpdateImage;
 	char *imgPath;
@@ -43,19 +43,16 @@ int		main(int argc, char *argv[])
 	numberHeight = 0;
 	numberWidth = 0;
 
-	//ETAPE 1: Vérifier que les arguments donnés sont bons et les stocker dans des variables
-	
-		printf("argv0 : %s\n", argv[0]);
-		printf("argv1 : %s\n", argv[1]);
-		printf("argv2 : %s\n", argv[2]);
-		printf("argv3 : %s\n", argv[3]);
-	//Si aucun argument n'est donné
+	/*ETAPE 1: Vérifier que les arguments donnés sont bons et les stocker dans des variables*/
+
+	/*Si aucun argument n'est donné*/
 	if (argc == 1)
 	{
 		printf("Veuillez donner le repertoire contenant les images des chiffres en argument.\n");
 		exit(1);
 	}
-	else if (argc == 2) //Un argument
+	/*Un argument*/
+	else if (argc == 2)
 	{
 		printf("ATTENTION: Vous n'avez donne qu'un argument!\nJ'assume qu'il s'agit du chemin vers le dossier contenenant les images.\n");
 		printf("argv1 : %s\n", argv[1]);
@@ -63,7 +60,7 @@ int		main(int argc, char *argv[])
 		numberHeight = 9;
 		timer = 10;
 	}
-	else if(argc == 3 || argc == 4) //Si il y a deux arguments
+	else if(argc == 3 || argc == 4)
 	{
 
 		sscanf(argv[2], "%dx%d", &numberWidth, &numberHeight);
@@ -85,12 +82,12 @@ int		main(int argc, char *argv[])
 			timer = 10;
 	}
 
-	//ETAPE 2: Charger en mémoire les images des numéros
+	/*ETAPE 2: Charger en mémoire les images des numéros*/
 
-	//La 11e case sert à stocker les ':'
+	/*La 11e case sert à stocker les ':'*/
 
-	imgPath = malloc(strlen(argv[1]) * sizeof(char) + 6 * sizeof(char)); //Plus 6 char pour le nom de l'image
-
+	/*6 char pour les noms de l'image*/
+	imgPath = malloc(strlen(argv[1]) * sizeof(char) + 6 * sizeof(char));
 
 	strcpy(imgPath, argv[1]);
 
@@ -112,10 +109,7 @@ int		main(int argc, char *argv[])
 		imgPath[strlen(argv[1])] = '\0';
 	}
 
-
-
-
-	//ETAPE 5: redimensionner les numéros
+	/*ETAPE 5: redimensionner les numéros*/
 	image * tmpResizedImage;
 	for (int i = 0; i < 11; ++i)
 	{
@@ -135,7 +129,7 @@ int		main(int argc, char *argv[])
 
 	/*Dans la mémoire, on a maintenant uniquement les images des chiffres resizés*/
 
-	//ETAPE 8 : Afficher le timer
+	/*ETAPE 8 : Afficher le timer*/
 	char stringInImage[] = "Ce message va etre acutalise dans ";
 	char tmpString[255];
 	strcpy(tmpString, stringInImage);
@@ -147,7 +141,7 @@ int		main(int argc, char *argv[])
 	 *en attente de l'appui sur la touche 'q'*/
 	while (1)
 	{
-		if (i == timer) // TODO remplacer avec la var d'environnement
+		if (i == timer)
 		{
 			strcpy(tmpString, stringInImage);
 			free(hourBackground);
@@ -169,6 +163,5 @@ int		main(int argc, char *argv[])
 		i++;
 	}
 
-	//ETAPE 8: Quitter
 	return 0;
 }
