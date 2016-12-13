@@ -47,6 +47,7 @@ int		main(int argc, char *argv[])
       /*Permet d'afficher l'image*/
       printImage (background);
 
+      /*Attend l'appuie d'une touche pour pouvoir quitter le programme*/
       getchar();
       return 0;
 
