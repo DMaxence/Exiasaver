@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 17:33:00 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/13 17:21:35 by mduhoux                                  */
+/*   Updated: 2016/12/09 17:33:56 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 #include <string.h>
@@ -19,25 +19,16 @@
 
 int		main(int argc, char *argv[])
 {
-      char *imagename;
+      char imagename[255];
 
       /*Vérification du paramètre de l'image*/
-	  printf("%d", argc);
       if (argc == 2)
       {
-	  imagename = malloc((strlen(argv[1])+1) * sizeof(char));
-	  sscanf(argv[1], "%s", imagename);
-	 // imagename = argv[1];
+      strcpy (imagename, argv[1]);
 
-     // strcpy (imagename, argv[1]);
 
       }
-	  else
-	  {
-		printf("Mauvais nombre d'arguments\n");
-		exit (1);
-	  }
-       //Déclaration de la variable de types image
+       /*Déclaration de la variable de types image*/
       image *background;
       image *display;
 
