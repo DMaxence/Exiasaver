@@ -122,11 +122,11 @@ int		main(int argc, char *argv[])
 
 	while (1)
 	{
-		if (i == 10)
+		if (i == 10) // TODO remplacer avec la var d'environnement
 		{
+			strcpy(tmpString, stringInImage);
 			free(hourBackground);
 			hourBackground = createFullTerminalHourImage(numbers);
-			strcpy(tmpString, stringInImage);
 			i = 0;
 		}
 		textUpdateImage = stringToImage(tmpString);
@@ -142,7 +142,6 @@ int		main(int argc, char *argv[])
 		sleep(1);
 		strcat(tmpString, ".");
 		i++;
-		printf("%d\n", i);
 	}
 
 	//ETAPE 8: Quitter
