@@ -6,11 +6,12 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 15:03:32 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 17:31:35 by mduhoux                                  */
+/*   Updated: 2016/12/13 14:40:35 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "launcher.h"
+#include "../common/getKey.h"
 
 int		main(int argc, char *argv[])
 {

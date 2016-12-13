@@ -6,11 +6,12 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/12 15:16:08 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 17:24:20 by mduhoux                                  */
+/*   Updated: 2016/12/13 16:17:37 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "launcher.h"
+#include "../common/getKey.h"
 
 int		printStats()
 {
@@ -73,6 +74,7 @@ int		printStats()
 				break;
 			default:
 				printf("Mauvais choix\n");
+				exit(1);
 				break;
 		}
 	}
