@@ -23,6 +23,7 @@
 #include "../common/deleteImage.h"
 #include "../common/centerImage.h"
 #include "../common/stringToImage.h"
+#include "../common/createFullTerminalHourImage.h"
 
 int		main(int argc, char *argv[])
 {
@@ -31,18 +32,10 @@ int		main(int argc, char *argv[])
 	int numberHeight;
 
 	image numbers[11]; //Ce tableau va contenir les images
-	image * termBackground;
+	image * hourBackground;
 	image * textUpdateImage;
 	char *imgPath;
 	int i;
-
-	//Les variables contenant l'index des 
-	int h0;
-	int h1;
-	int m0;
-	int m1;
-	int s0;
-	int s1;
 
 	numberHeight = 0;
 	numberWidth = 0;
@@ -109,122 +102,50 @@ int		main(int argc, char *argv[])
 
 
 
-	//TANT QUE PAS APPUYE SUR TOUCHE
-	//while (1)
+
+	//ETAPE 4.5: A faire + tard: redimensionner les numéros
+
+	//ETAPE 5: Créer une image contenant l'heure
+
+	//7 -> le nombre d'espaces
+	//2 -> la taille des ':'
+
+	//Creer une image de fond de la taille du terminal
+	
+
+	//ETAPE 8 : Afficher le timer
+	char stringInImage[] = "Ce message va etre acutalise dans ";
+	char tmpString[255];
+	strcpy(tmpString, stringInImage);
+	hourBackground = createFullTerminalHourImage(numbers);
+	i = 0;
+
+	while (1)
 	{
-
-		//ETAPE 4: Trouver l'heure 
-		time_t timestamp;				//declaration de la variable timestamp de type time_t
-		struct tm * t;					//declaration de la structure t de type tm
-										//ces variables servent a enregistrer les dates
-
-		timestamp = time(NULL);			//on definit le timestamp en timestamp actuel
-										//les valeurs enregistrees de dans correspondent au systeme
-		t = localtime(&timestamp);		//ici on initialise les valeurs de la structure t
-										//au temps local de l'ordinateur
-
-
-		//ETAPE 4.5: A faire + tard: redimensionner les numéros
-
-		//ETAPE 5: Créer une image contenant l'heure
-
-		//7 -> le nombre d'espaces
-		//2 -> la taille des ':'
-
-		//Creer une image de fond de la taille du terminal
-		termBackground = createUniformImageTermSize(' ');
-
-		image * hourBG = createUniformImage(' ', 6 * numberWidth + 7 + 2, numberHeight);
-
-		h0 = (int)t->tm_hour / 10;
-		
-		h1 = (int)t->tm_hour;
-		while(h1 > 9)
-			h1 -= 10;
-
-		m0 = (int)t->tm_min / 10;
-
-		m1 = (int)t->tm_min;
-		while(m1 > 9)
-			m1 -= 10;
-
-		s0 = (int)t->tm_sec / 10;
-
-		s1 = (int)t->tm_sec;
-		while(s1 > 9)
-			s1 -= 10;
-
-
-		numbers[h0].xPos = 0;
-		numbers[h0].yPos = 0;
-		mergeImages(*hourBG, numbers[h0]);
-
-		numbers[h1].xPos = numberWidth + 1;
-		numbers[h1].yPos = 0;
-		mergeImages(*hourBG, numbers[h1]);
-
-		numbers[10].xPos = 2 * numberWidth + 2;
-		numbers[10].yPos = 0;
-		mergeImages(*hourBG, numbers[10]);
-
-		numbers[m0].xPos = 2 * numberWidth + 4;
-		numbers[m0].yPos = 0;
-		mergeImages(*hourBG, numbers[m0]);
-
-		numbers[m1].xPos = 3 * numberWidth + 5;
-		numbers[m1].yPos = 0;
-		mergeImages(*hourBG, numbers[m1]);
-
-		numbers[10].xPos = 4 * numberWidth + 6;
-		numbers[10].yPos = 0;
-		mergeImages(*hourBG, numbers[10]);
-
-		numbers[s0].xPos = 4 * numberWidth + 8;
-		numbers[s0].yPos = 0;
-		mergeImages(*hourBG, numbers[s0]);
-
-		numbers[s1].xPos = 5 * numberWidth + 9;
-		numbers[s1].yPos = 0;
-		mergeImages(*hourBG, numbers[s1]);
-
-
-
-		//ETAPE 6: Centrer l'image de l'heure sur celle du terminal
-		centerImage(*termBackground, *hourBG);
-		//ETAPE 6.5: TODO Rajouter le texte d'actualisation
-
-		//ETAPE 7: Afficher l'image
-
-
-		//ETAPE 8 : Afficher le timer
-		char stringInImage[] = "Ce message va etre acutalise dans ";
-		int i;
-		char tmpString[255];
-		strcpy(tmpString, stringInImage);
-		while (1)
+		if (i == 10)
 		{
-			if (i == 10)
-			{
-				strcpy(tmpString, stringInImage);
-				i = 0;
-			}
-			textUpdateImage = stringToImage(tmpString);
-
-			textUpdateImage->xPos = (termBackground->xDim - textUpdateImage->xDim)/2;
-			textUpdateImage->yPos = termBackground->yDim - 1;
-
-			mergeImages(*termBackground, *textUpdateImage);
-			printImage(termBackground);
-			free(textUpdateImage);
-
-			sleep(1);
-			strcat(tmpString, ".");
-			i++;
+			free(hourBackground);
+			hourBackground = createFullTerminalHourImage(numbers);
+			strcpy(tmpString, stringInImage);
+			i = 0;
 		}
-		//deleteImage(tmpimg);
+		textUpdateImage = stringToImage(tmpString);
 
+		textUpdateImage->xPos = (hourBackground->xDim - textUpdateImage->xDim)/2;
+		textUpdateImage->yPos = hourBackground->yDim - 1;
+
+		mergeImages(*hourBackground, *textUpdateImage);
+		printImage(hourBackground);
+
+		free(textUpdateImage);
+
+		sleep(1);
+		strcat(tmpString, ".");
+		i++;
+		printf("%d\n", i);
 	}
-	//FIN TANT QUE
+	//deleteImage(tmpimg);
+
 
 	//ETAPE 8: Quitter
 	return 0;
