@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 09:54:30 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 14:08:48 by mduhoux                                  */
+/*   Updated: 2016/12/13 11:14:05 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,22 @@
 
 int		executeSaver(char *pathToHome, int screenSaverToLaunch, char *argumentsList[4])
 {
-	char *path;
-	pid_t pid_child;
-	pid_child = fork();
-	
-	switch(screenSaverToLaunch)
-	{
-		case 1:
-			strcat(pathToHome, "exiasaver1");
-		break;
-		case 2:
-			strcat(pathToHome, "exiasaver2");
-		break;
-		case 3:
-			strcat(pathToHome, "exiasaver3");
-		break;
-	}
+		char *path;
 
-	switch(pid_child)
-	{
-		case -1:
-			perror("fork");
-			return EXIT_FAILURE;
-		break;
+		switch(screenSaverToLaunch)
+		{
+				case 1:
+						strcat(pathToHome, "exiasaver1");
+						break;
+				case 2:
+						strcat(pathToHome, "exiasaver2");
+						break;
+				case 3:
+						strcat(pathToHome, "exiasaver3");
+						break;
+		}
 
-		case 0:
-			logs(screenSaverToLaunch, argumentsList);
-			execv(pathToHome, argumentsList);
-		break;
-
-		default:
-			wait(pid_child);
-		break;
-	}
+		logs(screenSaverToLaunch, argumentsList);
+		execv(pathToHome, argumentsList);
+		exit (0);
 }
