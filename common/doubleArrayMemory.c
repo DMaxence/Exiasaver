@@ -7,10 +7,11 @@ character ** createTable(int nbCol, int nbLin){
 	   theArray[i] = (character*) malloc(nbLin * sizeof(character));
    
     return theArray;*/
+    int i;
     character ** arr = (character**)malloc(nbCol * sizeof(character*));
 	character * arr_data = malloc( nbCol * nbLin * sizeof(character));
 	
-	for(int i=0; i<nbCol; i++)
+	for(i = 0; i<nbCol; i++)
 	   arr[i] = arr_data + i * nbLin ;
 
 	return arr;
