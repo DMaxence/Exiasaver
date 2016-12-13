@@ -144,8 +144,6 @@ int		main(int argc, char *argv[])
 		i++;
 		printf("%d\n", i);
 	}
-	//deleteImage(tmpimg);
-
 
 	//ETAPE 8: Quitter
 	return 0;
