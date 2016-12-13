@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 17:33:00 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/13 11:09:58 by mduhoux                                  */
+/*   Updated: 2016/12/13 12:42:46 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,7 @@ int		main(int argc, char *argv[])
 		imgPath[strlen(argv[1])] = '\0';
 	}
 
-	//ETAPE 3: Creer une image de fond de la taille du terminal
 
-	termBackground = createUniformImageTermSize(' ');
 
 	//TANT QUE PAS APPUYE SUR TOUCHE
 	//while (1)
@@ -132,6 +130,10 @@ int		main(int argc, char *argv[])
 
 		//7 -> le nombre d'espaces
 		//2 -> la taille des ':'
+
+		//Creer une image de fond de la taille du terminal
+		termBackground = createUniformImageTermSize(' ');
+
 		image * hourBG = createUniformImage(' ', 6 * numberWidth + 7 + 2, numberHeight);
 
 		h0 = (int)t->tm_hour / 10;
