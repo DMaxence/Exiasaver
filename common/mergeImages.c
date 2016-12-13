@@ -8,12 +8,12 @@ void mergeImages(image biggerImage, image smallerImage)
 	{
 		for (j = 0; j < biggerImage.yDim; ++j)
 		{
-			//Pour chaque case de la plus grande image
-
-			//Si c'est un endroit à modifier
+			/*Pour chaque case de la plus grande image,
+			Si c'est un endroit à modifier*/
 			if ((i >= smallerImage.xPos && i < (smallerImage.xPos + smallerImage.xDim))
 				&& j >= smallerImage.yPos && j < (smallerImage.yPos +smallerImage.yDim))
 			{
+				/*Alors on modifie la case en la remplaçant par par celle de smallerImage correspondante*/
 				biggerImage.charArray[i][j].c = smallerImage.charArray[i - smallerImage.xPos][j - smallerImage.yPos].c;
 
 				biggerImage.charArray[i][j].rgb.R = smallerImage.charArray[i - smallerImage.xPos][j - smallerImage.yPos].rgb.R;

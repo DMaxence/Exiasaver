@@ -7,7 +7,7 @@
 #include "centerImage.h"
 #include "stringToImage.h"
 
-//Renommer à main pour faire des tests
+/*Renommer à main pour faire des tests*/
 int test_main()
 {
 	image testImage1;

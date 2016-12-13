@@ -4,8 +4,8 @@
 #include "struct_character.h"
 
 
-//La struct image est une image convertie en character
-//Ainsi que ses dimensions et sa position
+/*La struct image est une image convertie en character
+Ainsi que ses dimensions et sa position*/
 struct image
 {
 	character ** charArray;

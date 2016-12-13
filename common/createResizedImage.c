@@ -34,19 +34,3 @@ image * createResizedImage(image imageToResize, int widthToFit, int heightToFit)
 
 	return outImage;
 }
-
-/*public void unzoom(int[][] in, int[][] out){
-for(int i=0;i<out.length;i++)
-for(int j=0;j<out[i].length;j++)
-out[i][j]= computepixel(in,i,j,out.length,out[i].length);
-}
-
-
-private int computepixel(int[][] out, float i, float j, int width, int height) {
-float x,y;
-x=(float) (i/width)*out.length;
-y=(float) (j/height)*out[0].length;
-x=(x<out.length)?x:(out.length-1);
-y=(y<out[0].length)?y:(out[0].length-1);
-return out[(int)x][(int)y];
-}*/

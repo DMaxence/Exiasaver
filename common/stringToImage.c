@@ -16,10 +16,13 @@ image *	stringToImage(char *string)
 {
 	int i;
 	image *stringImage;
+
 	stringImage = createUniformImage(' ', strlen(string), 1);
+	
 	for (i = 0; i < strlen(string); i++)
 	{
 		stringImage->charArray[i][0].c = string[i];
 	}
+	
 	return stringImage;
 }

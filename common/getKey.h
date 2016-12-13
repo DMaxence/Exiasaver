@@ -16,4 +16,6 @@
 #include <stdlib.h>
 #include <signal.h>
 
+/*getKey 
+Cette fonction permet de tuer un processus parent à l'entrée du caractère q*/
 int	getKey(void);

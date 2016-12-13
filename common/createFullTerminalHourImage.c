@@ -2,17 +2,23 @@
 
 image * createFullTerminalHourImage(image numbersList[11])
 {
-	//Déclaration des variables
-	time_t timestamp;				//declaration de la variable timestamp de type time_t
-	struct tm * t;					//declaration de la structure t de type tm
-									//ces variables servent a enregistrer les dates
+	/*Déclaration des variables*/
+	
+	/*declaration de la variable timestamp de type time_t	
+	declaration de la structure t de type tm
+	ces variables servent a enregistrer les dates*/
+	time_t timestamp;
+	struct tm * t;
+	
+	/*on definit le timestamp en timestamp actuel
+	les valeurs enregistrees de dans correspondent au systeme
+	ici on initialise les valeurs de la structure t
+	au temps local de l'ordinateur*/
+	
+	timestamp = time(NULL);			
+	t = localtime(&timestamp);		
 
-	timestamp = time(NULL);			//on definit le timestamp en timestamp actuel
-									//les valeurs enregistrees de dans correspondent au systeme
-	t = localtime(&timestamp);		//ici on initialise les valeurs de la structure t
-									//au temps local de l'ordinateur
-
-	//Les variables contenant l'index des 
+	/*Les variables contenant l'index des images à afficher*/
 	int h0;
 	int h1;
 	int m0;
@@ -21,15 +27,25 @@ image * createFullTerminalHourImage(image numbersList[11])
 	int s1;
 
 	image * termBackground;
+	image * hourBG;
 	int numberWidth = numbersList[0].xDim;
 	int numberHeight = numbersList[0].yDim;
 
 
-	//Début fonction
+	/*Les variables sont déclarées, ont peut maintenant agir dessus*/
 	termBackground = createUniformImageTermSize(' ');
 
-	image * hourBG = createUniformImage(' ', 8 * numberWidth + 3, numberHeight);
+	/*
+	hourBG est une image vide des dimensions de l'heure
+	
+	8 * numberwidth -> 2 * heures + 2* : + 2 * minutes + 2* secondes de même largeur
+	+3 -> les espaces entre les nombres
+	*/
+	hourBG = createUniformImage(' ', 8 * numberWidth + 3, numberHeight);
 
+
+	/*On trouve le chiffre des dizaines et des unités de l'heure, des minutes,
+	et des secondes*/
 	h0 = (int)t->tm_hour / 10;
 	
 	h1 = (int)t->tm_hour;
@@ -47,6 +63,8 @@ image * createFullTerminalHourImage(image numbersList[11])
 	s1 = (int)t->tm_sec;
 	while(s1 > 9)
 		s1 -= 10;
+
+	/*On donne la bonne position aux chiffres sur l'image de bonne taille*/
 
 	numbersList[h0].xPos = 0;
 	numbersList[h0].yPos = 0;
@@ -82,10 +100,8 @@ image * createFullTerminalHourImage(image numbersList[11])
 
 
 
-	//ETAPE 6: Centrer l'image de l'heure sur celle du terminal
+	/*On centre l'image de l'heure sur l'image de toute la console*/
 	centerImage(*termBackground, *hourBG);
-	//ETAPE 6.5: TODO Rajouter le texte d'actualisation
-	return termBackground;
-	//ETAPE 7: Afficher l'image
 
+	return termBackground;
 }
