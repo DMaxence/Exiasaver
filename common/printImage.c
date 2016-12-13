@@ -2,9 +2,12 @@
 
 void printImage(image * img)
 {
-	for (int i = 0; i < img->yDim; ++i)
+	int i;
+	int j;
+
+	for (i = 0; i < img->yDim; ++i)
 	{
-		for (int j = 0; j < img->xDim; ++j)
+		for (j = 0; j < img->xDim; ++j)
 		{
 			//Voici comment marche TRUECOLOR
 			//printf("\x1b[38;2;255;00;0mTRUECOLOR\x1b[0m\n");
