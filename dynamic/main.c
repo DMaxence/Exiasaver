@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 17:33:00 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/09 17:33:56 by mduhoux                                  */
+/*   Updated: 2016/12/13 11:09:58 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include "../common/createUniformImage.h"
 #include "../common/mergeImages.h"
 #include "../common/deleteImage.h"
+#include "../common/centerImage.h"
+#include "../common/stringToImage.h"
 
 int		main(int argc, char *argv[])
 {
@@ -30,7 +32,9 @@ int		main(int argc, char *argv[])
 
 	image numbers[11]; //Ce tableau va contenir les images
 	image * termBackground;
+	image * textUpdateImage;
 	char *imgPath;
+	int i;
 
 	//Les variables contenant l'index des 
 	int h0;
@@ -58,7 +62,7 @@ int		main(int argc, char *argv[])
 		numberWidth = 3;
 		numberHeight = 5;
 	}
-	else if(argc == 2) //Si il y a un argument
+	else if(argc == 3) //Si il y a un argument
 	{
 
 
@@ -85,7 +89,7 @@ int		main(int argc, char *argv[])
 
 	strcpy(imgPath, argv[1]);
 
-	for (int i = 0; i < 11; ++i)
+	for (i = 0; i < 11; ++i)
 	{
 		if(i != 10)
 			imgPath[strlen(argv[1]) + 0] = (char)i + '0';
@@ -94,7 +98,7 @@ int		main(int argc, char *argv[])
 
 		imgPath[strlen(argv[1]) + 1] = '.';
 		imgPath[strlen(argv[1]) + 2] = 'p';
-		imgPath[strlen(argv[1]) + 3] = 'p';
+		imgPath[strlen(argv[1]) + 3] = 'b';
 		imgPath[strlen(argv[1]) + 4] = 'm';
 		imgPath[strlen(argv[1]) + 5] = '\0';
 
@@ -169,7 +173,7 @@ int		main(int argc, char *argv[])
 		numbers[m1].yPos = 0;
 		mergeImages(*hourBG, numbers[m1]);
 
-		numbers[10].xPos = 4 * numberWidth + 7;
+		numbers[10].xPos = 4 * numberWidth + 6;
 		numbers[10].yPos = 0;
 		mergeImages(*hourBG, numbers[10]);
 
@@ -184,13 +188,37 @@ int		main(int argc, char *argv[])
 
 
 		//ETAPE 6: Centrer l'image de l'heure sur celle du terminal
-
+		centerImage(*termBackground, *hourBG);
 		//ETAPE 6.5: TODO Rajouter le texte d'actualisation
 
 		//ETAPE 7: Afficher l'image
 
-		printImage(hourBG);
 
+		//ETAPE 8 : Afficher le timer
+		char stringInImage[] = "Ce message va etre acutalise dans ";
+		int i;
+		char tmpString[255];
+		strcpy(tmpString, stringInImage);
+		while (1)
+		{
+			if (i == 10)
+			{
+				strcpy(tmpString, stringInImage);
+				i = 0;
+			}
+			textUpdateImage = stringToImage(tmpString);
+
+			textUpdateImage->xPos = (termBackground->xDim - textUpdateImage->xDim)/2;
+			textUpdateImage->yPos = termBackground->yDim - 1;
+
+			mergeImages(*termBackground, *textUpdateImage);
+			printImage(termBackground);
+			free(textUpdateImage);
+
+			sleep(1);
+			strcat(tmpString, ".");
+			i++;
+		}
 		//deleteImage(tmpimg);
 
 	}
