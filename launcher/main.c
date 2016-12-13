@@ -6,12 +6,11 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 15:03:32 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/13 14:40:35 by mduhoux                                  */
+/*   Updated: 2016/12/13 17:16:03 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "launcher.h"
-#include "../common/getKey.h"
 
 int		main(int argc, char *argv[])
 {
@@ -31,7 +30,7 @@ int		main(int argc, char *argv[])
 
 	//ETAPE 2: Se décider sur quel ecran de veille choisir
 	screenSaverToLaunch = randomSaver();
-
+	screenSaverToLaunch = 1;
 	//ETAPE 3: Prépare les variables d'environnement pour trouver où se troubent les dossiers nécessaires
 	getEnvFolders(screenSaverToLaunch, &pathToHome, argumentsList); 
 
@@ -44,7 +43,8 @@ int		main(int argc, char *argv[])
 	free(imageName);
 	//ETAPE 5: clear le terminal
 	emptyTerminal();
-	//ETAPE 6: Executer le fond d'ecran	
+	//ETAPE 6: Executer le fond d'ecran
+	printf("pro\n");
 	executeSaver(pathToHome, screenSaverToLaunch, argumentsList);	
 	
 	return 0;
