@@ -122,7 +122,7 @@ int		main(int argc, char *argv[])
 
 	while (1)
 	{
-		if (i == 10) // TODO remplacer avec la var d'environnement
+		if (i == 3) // TODO remplacer avec la var d'environnement
 		{
 			strcpy(tmpString, stringInImage);
 			free(hourBackground);

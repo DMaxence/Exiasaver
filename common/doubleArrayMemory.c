@@ -18,11 +18,6 @@ character ** createTable(int nbCol, int nbLin){
 }
 
 void freeTable(character **array, int nbCol){
-	//int i;
-	//for (i = 0; i < nbCol; ++i)
-	//{
-	//	free(array[i]);
-	//}
 	free(*array);
 	free(array);
 }

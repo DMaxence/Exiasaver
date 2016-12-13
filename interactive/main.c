@@ -18,6 +18,7 @@
 #include "../common/mergeImages.h"
 #include "../common/deleteImage.h"
 #include "../common/createUniformImage.h"
+#include "../common/mergeImagesRepeatOutOfBounds.h"
 
 #include "../launcher/launcher.h"
 
@@ -28,6 +29,7 @@ int		main(int argc, char *argv[])
 	int initialPositionY;
 	int backgroundWidth;
 	int backgroundHeight;
+	char lastAction;
 	int * x;
 	int * y;
 
@@ -118,6 +120,9 @@ int		main(int argc, char *argv[])
 	free(x);
 	free(y);
 
+	/* On donne une valeur à lastAction pour éviter les bugs lors d'une entrée vide au premier coup */
+	lastAction = ' ';
+
 	//TANT QUON TAPE PAS P
 	while(userInput[0] != 'p')
 	{
@@ -125,36 +130,84 @@ int		main(int argc, char *argv[])
 		fullTerminalImage = createUniformImage(' ', backgroundWidth, backgroundHeight);
 
 		//METTRE LAVION DESSUS
-		mergeImages(*fullTerminalImage, planeImage);
+		mergeImagesRepeatOutOfBounds(*fullTerminalImage, planeImage);
 
 		//AFFICHER
 		printImage(fullTerminalImage);
 
 		//LIRE LINPUT
 		printf("Direction (p: quitter): ");
-		scanf("%s", userInput);
 
-		//BOUGER LAVION DE POSITION
+		/* La prochaine ligne lit au maximum la taille de userInput depuis l'entrée standard */
+		fgets(userInput, 255 * sizeof(char), stdin); //TODO utiliser un char?
+
+		/*On détermine l'action à effectuer par l'avion
+		Si on n'entre rien ou appuie sur une touche non assignée, on effectue la dernière
+		action effectuée*/
+
+		if ( userInput[0] == '\n' ||
+			(userInput[0] != 'z' &&
+			 userInput[0] != 'q' &&
+			 userInput[0] != 's' &&
+			 userInput[0] != 'd' &&
+			 userInput[0] != 'p'
+			)
+		   )
+		{
+			userInput[0] = lastAction;
+		}
+		else
+		{
+			lastAction = userInput[0];
+		}
+
 		if (userInput[0] == 'z')
 		{
 			planeImage.yPos--;
 			planeImage.charArray = planePositions[0].charArray;
 		}
-		if (userInput[0] == 's')
+		else if (userInput[0] == 's')
 		{
 			planeImage.yPos++;
 			planeImage.charArray = planePositions[1].charArray;
 		}
-		if (userInput[0] == 'd')
+		else if (userInput[0] == 'd')
 		{
 			planeImage.xPos++;
 			planeImage.charArray = planePositions[2].charArray;
 		}
-		if (userInput[0] == 'q')
+		else if (userInput[0] == 'q')
 		{
 			planeImage.xPos--;
 			planeImage.charArray = planePositions[3].charArray;
 		}
+
+		/*
+			/!\ Belle petite métaphore imagée
+			Il faut vérifier que l'avion n'aie pas fait un tour du monde
+				-Paul Combaldieu, Nanterre, 2016
+
+			Parce que sinon on lui remet sa position à zéro 
+		*/
+
+		if (planeImage.xPos >= fullTerminalImage->xDim)
+		{
+			planeImage.xPos = 0;
+		}
+		else if(planeImage.xPos + planeImage.xDim <= 0)
+		{
+			planeImage.xPos = fullTerminalImage->xDim - planeImage.xDim;
+		}
+
+		if (planeImage.yPos >= fullTerminalImage->yDim)
+		{
+			planeImage.yPos = 0;
+		}
+		else if(planeImage.yPos + planeImage.yDim <= 0)
+		{
+			planeImage.yPos = fullTerminalImage->yDim - planeImage.yDim;
+		}
+
 
 		//DELETE L'IMAGE DE BACKGROUND
 		deleteImage(fullTerminalImage);
