@@ -88,11 +88,6 @@ int		main(int argc, char *argv[])
 
 	free(imgPath);
 
-	//printImage(&planePositions[0]);
-	//printImage(&planePositions[1]);
-	//printImage(&planePositions[2]);
-	//printImage(&planePositions[3]);
-
 	//On a maintenant les images de l'avion chargées.
 	//tant que la commande n'est pas la touche 'p'
 	char * userInput;

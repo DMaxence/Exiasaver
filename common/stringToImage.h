@@ -14,4 +14,9 @@
 #include "struct_image.h"
 #include "createUniformImage.h"
 #include <string.h>
+
+/*stringToImage
+Convertis une string en image
+INPUT string - La string à convertir
+NOTE: L'image sera malloc et de hauteur 1*/
 image *	stringToImage(char *string);

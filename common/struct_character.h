@@ -1,7 +1,7 @@
 #pragma once
 
-//Couleur Red Green Blue
-//de 0 à 255
+/*Couleur Red Green Blue
+de 0 à 255*/
 struct color
 {
 	unsigned int R;
@@ -10,8 +10,8 @@ struct color
 };
 typedef struct color color;
 
-//Un caractère occupe un 'pixel' dans le terminal
-//Il s'agit d'un caractère et d'une couleur
+/*Un caractère occupe un 'pixel' dans le terminal
+Il s'agit d'un caractère et d'une couleur*/
 struct character
 {
 	color rgb;
