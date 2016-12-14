@@ -28,7 +28,7 @@ image * createFullTerminalHourImage(image numbersList[11])
 	//Début fonction
 	termBackground = createUniformImageTermSize(' ');
 
-	image * hourBG = createUniformImage(' ', 6 * numberWidth + 7 + 2, numberHeight);
+	image * hourBG = createUniformImage(' ', 8 * numberWidth + 3, numberHeight);
 
 	h0 = (int)t->tm_hour / 10;
 	
@@ -56,27 +56,27 @@ image * createFullTerminalHourImage(image numbersList[11])
 	numbersList[h1].yPos = 0;
 	mergeImages(*hourBG, numbersList[h1]);
 
-	numbersList[10].xPos = 2 * numberWidth + 2;
+	numbersList[10].xPos = 2 * numberWidth + 1;
 	numbersList[10].yPos = 0;
 	mergeImages(*hourBG, numbersList[10]);
 
-	numbersList[m0].xPos = 2 * numberWidth + 4;
+	numbersList[m0].xPos = 3 * numberWidth + 1;
 	numbersList[m0].yPos = 0;
 	mergeImages(*hourBG, numbersList[m0]);
 
-	numbersList[m1].xPos = 3 * numberWidth + 5;
+	numbersList[m1].xPos = 4 * numberWidth + 2;
 	numbersList[m1].yPos = 0;
 	mergeImages(*hourBG, numbersList[m1]);
 
-	numbersList[10].xPos = 4 * numberWidth + 6;
+	numbersList[10].xPos = 5 * numberWidth + 2;
 	numbersList[10].yPos = 0;
 	mergeImages(*hourBG, numbersList[10]);
 
-	numbersList[s0].xPos = 4 * numberWidth + 8;
+	numbersList[s0].xPos = 6 * numberWidth + 2;
 	numbersList[s0].yPos = 0;
 	mergeImages(*hourBG, numbersList[s0]);
 
-	numbersList[s1].xPos = 5 * numberWidth + 9;
+	numbersList[s1].xPos = 7 * numberWidth + 3;
 	numbersList[s1].yPos = 0;
 	mergeImages(*hourBG, numbersList[s1]);
 

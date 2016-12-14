@@ -25,6 +25,7 @@
 #include "../common/stringToImage.h"
 #include "../common/createFullTerminalHourImage.h"
 #include "../common/getKey.h"
+#include "../common/createResizedImage.h"
 
 int		main(int argc, char *argv[])
 {
@@ -90,6 +91,7 @@ int		main(int argc, char *argv[])
 
 	imgPath = malloc(strlen(argv[1]) * sizeof(char) + 6 * sizeof(char)); //Plus 6 char pour le nom de l'image
 
+
 	strcpy(imgPath, argv[1]);
 
 	for (i = 0; i < 11; ++i)
@@ -113,15 +115,25 @@ int		main(int argc, char *argv[])
 
 
 
-	//ETAPE 4.5: A faire + tard: redimensionner les numéros
+	//ETAPE 5: redimensionner les numéros
+	image * tmpResizedImage;
+	for (int i = 0; i < 11; ++i)
+	{
+		/*On crée une nouvelle image de bonne dimensions*/
+		tmpResizedImage = createResizedImage(numbers[i], numberWidth, numberHeight);
+		
+		/*On supprime les images 3x5*/
+		deleteImage(&numbers[i]);
 
-	//ETAPE 5: Créer une image contenant l'heure
+		/*On donne les nouvelles dimensions aux anciennes 3x5*/
+		numbers[i].xDim = numberWidth;
+		numbers[i].yDim = numberHeight;
 
-	//7 -> le nombre d'espaces
-	//2 -> la taille des ':'
+		/*On donne les nouvelles images aux anciennes 3x5*/
+		numbers[i].charArray = tmpResizedImage->charArray;
+	}
 
-	//Creer une image de fond de la taille du terminal
-	
+	/*Dans la mémoire, on a maintenant uniquement les images des chiffres resizés*/
 
 	//ETAPE 8 : Afficher le timer
 	char stringInImage[] = "Ce message va etre acutalise dans ";
