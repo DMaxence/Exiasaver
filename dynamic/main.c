@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 17:33:00 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/14 11:11:19 by mduhoux                                  */
+/*   Updated: 2016/12/14 12:48:05 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		main(int argc, char *argv[])
 		numberHeight = 9;
 		timer = 10;
 	}
-	else if(argc == 3) //Si il y a deux arguments
+	else if(argc == 3 || argc == 4) //Si il y a deux arguments
 	{
 
 		sscanf(argv[2], "%dx%d", &numberWidth, &numberHeight);
@@ -80,10 +80,6 @@ int		main(int argc, char *argv[])
 			exit(1);
 		}
 		timer = 10;
-	}
-	else if(argc == 4)
-	{
-		timer = atoi(argv[3]);
 	}
 
 	//ETAPE 2: Charger en mémoire les images des numéros
