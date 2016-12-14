@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 17:33:00 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/14 12:48:05 by mduhoux                                  */
+/*   Updated: 2016/12/14 13:00:05 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ int		main(int argc, char *argv[])
 			printf("Vous avez donne: %dx%d\n", numberWidth, numberHeight);
 			exit(1);
 		}
-		timer = 10;
+		if (argc == 4)
+			timer = atoi(argv[3]);
+		else
+			timer = 10;
 	}
 
 	//ETAPE 2: Charger en mémoire les images des numéros
