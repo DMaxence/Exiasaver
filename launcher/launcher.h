@@ -21,34 +21,39 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 
-//fonction empty pour nettoyer le terminal
+/*fonction empty pour nettoyer le terminal*/
 void	emptyTerminal(void);
 
-//fonction randomSaver pour definir un chiffre aleatoire dans le but d'executer un saver aleatoirement
-//Dans les faits, cette fonction renvoie un int aléatoire entre 1 et 3 compris
+/*fonction randomSaver pour definir un chiffre aleatoire dans le but d'executer un saver aleatoirement
+Dans les faits, cette fonction renvoie un int aléatoire entre 1 et 3 compris*/
 int		randomSaver(void);
 
-//fonction randomImage pour selectionner aleatoirement l'image du saver 1
+/*fonction randomImage pour selectionner aleatoirement l'image du saver 1*/
 char*	randomImage(char *argumentsList);
 
-//fonction logs qui cree et modifie le fichier de logs du saver
+/*fonction logs qui cree et modifie le fichier de logs du saver
+INPUT screenSaverToLaunch - Le scrsvr lancé (1 statique, 2 dynamique, 3 interactif)
+INPUT argumentsList - les arguments donnés aux exécutables*/
 int		logs(int screenSaverToLaunch, char *argumentsList[4]);
 
-//fonction pour récupérer la taille du terminal
-// OUTPUT width - la largeur du terminal
-// OUTPUT height - la hauteur du terminal
+/*fonction pour récupérer la taille du terminal
+OUTPUT width - la largeur du terminal
+OUTPUT height - la hauteur du terminal*/
 void	getTerminalSize(int * width, int * height);
 
-//fonction qui execute un saver aleatoirement grace a la fonction randomSaver
+/*fonction qui execute un saver aleatoirement grace a la fonction randomSaver
+INPUT pathToHome - Cette variable contient le dossier contenant les exécutables
+INPUT screensaverToLaunch - Le numéro du screensaver à lancer
+INPUT argumentsList - Les arguments à donner au launcher pour son exécution*/
 int		executeSaver(char *pathToHome, int screenSaverToLaunch, char *argumentsList[4]);
 
-//fonction pour recuperer les variables environnementales
-//Prépare la liste des dossiers nécessaires
-//Trouve le chemin vers le répertoire contenant les exécutables
-// INPUT saver - Le sreensaver à lancer (1 -> statique, 2 -> dynamique, 3 -> interactif)
-// OUTPUT homeFolder - Le chemin vers le répertoire contenant les executables
-// OUTPUT argumentsList - la liste des dossiers contenant les images etc
+/*fonction pour recuperer les variables environnementales
+Prépare la liste des dossiers nécessaires
+Trouve le chemin vers le répertoire contenant les exécutables
+INPUT saver - Le sreensaver à lancer (1 -> statique, 2 -> dynamique, 3 -> interactif)
+OUTPUT homeFolder - Le chemin vers le répertoire contenant les executables
+OUTPUT argumentsList - la liste des dossiers contenant les images etc*/
 void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4]);
 
-//fonction pour afficher les statistiques
+/*fonction pour afficher les statistiques*/
 int		printStats(void);
