@@ -16,6 +16,7 @@
 #include "../common/readPBM.h"
 #include "../common/centerImage.h"
 #include "../common/printImage.h"
+#include "../common/deleteImage.h"
 
 int		main(int argc, char *argv[])
 {
@@ -24,9 +25,7 @@ int		main(int argc, char *argv[])
       /*Vérification du paramètre de l'image*/
       if (argc == 2)
       {
-      strcpy (imagename, argv[1]);
-
-
+            strcpy (imagename, argv[1]);
       }
        /*Déclaration de la variable de types image*/
       image *background;
@@ -47,10 +46,12 @@ int		main(int argc, char *argv[])
       /*Permet d'afficher l'image*/
       printImage (background);
 
+      /*Comme il n'y a qu'une frame à afficher, on peut tout supprimer*/
+      deleteImage(background);
+      deleteImage(display);
+
       /*Attend l'appuie d'une touche pour pouvoir quitter le programme*/
       getchar();
+
       return 0;
-
-
-
 }
