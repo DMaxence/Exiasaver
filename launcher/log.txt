@@ -89,3 +89,16 @@
 13/11/2016 17:33:20;1;/home/max/Exiasaver/img/ex1.pbm;
 13/11/2016 17:33:29;1;/home/max/Exiasaver/img/ex4_couleur.ppm;
 13/11/2016 17:33:49;1;/home/max/Exiasaver/img/ex1.pbm;
+14/11/2016 16:53:36;2;5x3;
+14/11/2016 17:04:33;2;5x3;
+14/11/2016 17:04:36;1;/home/paul/Exiasaver/launchermain.c;
+14/11/2016 17:04:37;2;5x3;
+14/11/2016 17:04:38;3;/home/paul/Exiasaver/launcher;
+14/11/2016 17:04:39;2;5x3;
+14/11/2016 17:04:40;1;/home/paul/Exiasaver/launchermain;
+14/11/2016 17:04:40;1;/home/paul/Exiasaver/launchermain;
+14/11/2016 17:04:41;1;/home/paul/Exiasaver/launcherlauncher.h;
+14/11/2016 17:04:42;1;/home/paul/Exiasaver/launcherexecuteSaver.c;
+14/11/2016 17:04:43;1;/home/paul/Exiasaver/launcheremptyTerminal.c;
+14/11/2016 17:04:43;1;/home/paul/Exiasaver/launcheremptyTerminal.c;
+14/11/2016 17:04:44;2;5x3;
