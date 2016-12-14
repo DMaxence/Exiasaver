@@ -53,6 +53,7 @@ int		main(int argc, char *argv[])
 	else if(argc == 3)
 	{
 		sscanf(argv[2], "%dx%d", &initialPositionX, &initialPositionY);
+		printf("POSITION INITIALE %d %d \n", initialPositionX, initialPositionY);
 
 		if (initialPositionX < 0 || initialPositionY < 0 || initialPositionX > 80 || initialPositionY > 23)
 		{

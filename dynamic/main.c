@@ -130,7 +130,7 @@ int		main(int argc, char *argv[])
 	/*Dans la mémoire, on a maintenant uniquement les images des chiffres resizés*/
 
 	/*ETAPE 8 : Afficher le timer*/
-	char stringInImage[] = "Ce message va etre acutalise dans ";
+	char stringInImage[] = "Actualisation dans quelques secondes";
 	char tmpString[255];
 	strcpy(tmpString, stringInImage);
 	hourBackground = createFullTerminalHourImage(numbers);
