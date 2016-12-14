@@ -59,12 +59,12 @@ int		main(int argc, char *argv[])
 	{
 		printf("ATTENTION: Vous n'avez donne qu'un argument!\nJ'assume qu'il s'agit du chemin vers le dossier contenenant les images.\n");
 		printf("argv1 : %s\n", argv[1]);
-		numberWidth = 3;
-		numberHeight = 5;
+		numberWidth = 5;
+		numberHeight = 9;
+		timer = 10;
 	}
-	else if(argc == 3) //Si il y a un argument
+	else if(argc == 3) //Si il y a deux arguments
 	{
-
 
 		sscanf(argv[2], "%dx%d", &numberWidth, &numberHeight);
 		printf("argv2 : %s\n", argv[2]);
@@ -79,6 +79,7 @@ int		main(int argc, char *argv[])
 			printf("Vous avez donne: %dx%d\n", numberWidth, numberHeight);
 			exit(1);
 		}
+		timer = 10;
 	}
 	else if(argc == 4)
 	{
