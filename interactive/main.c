@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <string.h>
+#include <time.h>
 
 #include "../common/struct_image.h"
 #include "../common/printImage.h"
@@ -35,7 +36,7 @@ int		main(int argc, char *argv[])
 
 	char *imgPath;
 	image planePositions[4];
-
+	srand(time(0));
 
 	//Si aucun argument n'est donné
 	if (argc == 1)
@@ -105,7 +106,7 @@ int		main(int argc, char *argv[])
 	planeImage.xDim = 6;
 	planeImage.yDim = 6;
 
-	planeImage.charArray = planePositions[3].charArray;
+	planeImage.charArray = planePositions[rand() % 4].charArray;
 
 	//On trouve les tailles correctes du bakground
 
@@ -120,8 +121,25 @@ int		main(int argc, char *argv[])
 	free(x);
 	free(y);
 
-	/* On donne une valeur à lastAction pour éviter les bugs lors d'une entrée vide au premier coup */
-	lastAction = ' ';
+	/*Le sens du vol est déterminé aléatoirement*/
+	switch(rand() % 4)
+	{
+		case 0:
+		lastAction = 'z';
+			break;
+
+		case 1:
+		lastAction = 'q';
+			break;
+
+		case 2:
+		lastAction = 's';
+			break;
+
+		case 3:
+		lastAction = 'd';
+			break;
+	}
 
 	//TANT QUON TAPE PAS P
 	while(userInput[0] != 'p')
