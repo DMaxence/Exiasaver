@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 17:33:00 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/13 12:42:46 by mduhoux                                  */
+/*   Updated: 2016/12/14 11:11:19 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "../common/centerImage.h"
 #include "../common/stringToImage.h"
 #include "../common/createFullTerminalHourImage.h"
+#include "../common/getKey.h"
 
 int		main(int argc, char *argv[])
 {
@@ -36,13 +37,17 @@ int		main(int argc, char *argv[])
 	image * textUpdateImage;
 	char *imgPath;
 	int i;
+	int timer;
 
 	numberHeight = 0;
 	numberWidth = 0;
 
-
 	//ETAPE 1: Vérifier que les arguments donnés sont bons et les stocker dans des variables
-
+	
+		printf("argv0 : %s\n", argv[0]);
+		printf("argv1 : %s\n", argv[1]);
+		printf("argv2 : %s\n", argv[2]);
+		printf("argv3 : %s\n", argv[3]);
 	//Si aucun argument n'est donné
 	if (argc == 1)
 	{
@@ -52,6 +57,7 @@ int		main(int argc, char *argv[])
 	else if (argc == 2) //Un argument
 	{
 		printf("ATTENTION: Vous n'avez donne qu'un argument!\nJ'assume qu'il s'agit du chemin vers le dossier contenenant les images.\n");
+		printf("argv1 : %s\n", argv[1]);
 		numberWidth = 3;
 		numberHeight = 5;
 	}
@@ -60,7 +66,7 @@ int		main(int argc, char *argv[])
 
 
 		sscanf(argv[2], "%dx%d", &numberWidth, &numberHeight);
-
+		printf("argv2 : %s\n", argv[2]);
 		if (numberWidth < 3 || numberHeight < 5 || numberWidth > 80 || numberHeight > 23)
 		{
 			printf("Dimensions trop grandes, trop petites, ou incorrectes!\n");
@@ -72,6 +78,10 @@ int		main(int argc, char *argv[])
 			printf("Vous avez donne: %dx%d\n", numberWidth, numberHeight);
 			exit(1);
 		}
+	}
+	else if(argc == 4)
+	{
+		timer = atoi(argv[3]);
 	}
 
 	//ETAPE 2: Charger en mémoire les images des numéros
@@ -120,9 +130,12 @@ int		main(int argc, char *argv[])
 	hourBackground = createFullTerminalHourImage(numbers);
 	i = 0;
 
+	getKey();
+	/*Appel a la fonction getKey pour creer un processus fils qui ecoute le clavier
+	 *en attente de l'appui sur la touche 'q'*/
 	while (1)
 	{
-		if (i == 3) // TODO remplacer avec la var d'environnement
+		if (i == timer) // TODO remplacer avec la var d'environnement
 		{
 			strcpy(tmpString, stringInImage);
 			free(hourBackground);

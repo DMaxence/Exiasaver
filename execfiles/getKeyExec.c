@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/13 18:53:02 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/13 23:56:35 by mduhoux                                  */
+/*   Updated: 2016/12/14 09:34:31 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 #include <sys/types.h>
 #include <signal.h>
 
-int	main(pid_t pid_parent)
+int	main(int argc, char *argv[])
 {
 	char keyPressed;
-	while (keyPressed != 'q')
-		keyPressed = getchar();
-	kill(pid_parent,9);
-	exit(0);
+	{
+		while (keyPressed != 'q')
+			keyPressed = getchar();
+		printf("c'est good");
+	}
+	return 0;
 }

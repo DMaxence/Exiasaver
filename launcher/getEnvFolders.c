@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 15:37:18 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/12 13:26:52 by mduhoux                                  */
+/*   Updated: 2016/12/14 11:19:17 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4])
 			if (tmp != NULL)
 			{
 				strcpy(argumentsList[0], tmp);
+				printf("getenv : %s\ntmpemv : %s\n", argumentsList[0], tmp);
 			}
 			else
 			{

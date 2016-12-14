@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/10 15:03:32 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/13 17:16:03 by mduhoux                                  */
+/*   Updated: 2016/12/14 11:22:04 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		main(int argc, char *argv[])
 
 	//ETAPE 2: Se décider sur quel ecran de veille choisir
 	screenSaverToLaunch = randomSaver();
-	screenSaverToLaunch = 1;
 	//ETAPE 3: Prépare les variables d'environnement pour trouver où se troubent les dossiers nécessaires
 	getEnvFolders(screenSaverToLaunch, &pathToHome, argumentsList); 
 
@@ -38,13 +37,15 @@ int		main(int argc, char *argv[])
 	//printf("%d %s %s\n", screenSaverToLaunch, pathToHome, argumentsList[0]);
 
 	//ETAPE 4: Finaliser la liste des arguments en ajoutant au chemin des dossiers les noms d'images
-	imageName = randomImage(argumentsList[0]);
-	strcat(argumentsList[0], imageName);
-	free(imageName);
+	if (screenSaverToLaunch == 1)
+	{
+		imageName = randomImage(argumentsList[0]);
+		strcat(argumentsList[0], imageName);
+		free(imageName);
+	}
 	//ETAPE 5: clear le terminal
 	emptyTerminal();
 	//ETAPE 6: Executer le fond d'ecran
-	printf("pro\n");
 	executeSaver(pathToHome, screenSaverToLaunch, argumentsList);	
 	
 	return 0;
