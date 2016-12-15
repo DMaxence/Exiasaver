@@ -6,7 +6,7 @@
 /*   By: mduhoux <maxence.duhoux@viacesi.fr>        |__   \/    |      /  \   */
 /*                                                  |     /\    |     /____\  */
 /*   Created: 2016/12/09 09:58:40 by mduhoux        |__  /  \ __|__  /      \ */
-/*   Updated: 2016/12/14 23:07:14 by mduhoux                                  */
+/*   Updated: 2016/12/15 08:55:41 by mduhoux                                  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char * randomImage(char *argumentsList)
 				srand(time(NULL));
 				randomNumber = rand() % i;
 
-				filename = malloc(strlen(filenames[randomNumber]) * sizeof(char));
+				filename = malloc(strlen(filenames[randomNumber]) * sizeof(filename));
 
 				strcpy(filename, filenames[randomNumber]);
 
@@ -87,10 +87,11 @@ char * randomImage(char *argumentsList)
 					free(filenames[j]);
 				}
 
-				printf("fils string : %s\n", filename);
+				printf("fils string : %s\nstrlen filename : %ld\n", filename, strlen(filename));
 
 				/*On envoie le nom du fichier a recuperer par le pipe */
-				write(fd[1], filename, (sizeof(filename)+1));
+				write(fd[1], filename, (sizeof(char) * strlen(filename)+1));
+				close(fd[1]);
 				exit(0);
 				break;
 			default:
@@ -99,9 +100,8 @@ char * randomImage(char *argumentsList)
 				
 
 				/*On lit le nom du fichier recupere par le pipe*/
-				while (read(fd[0], readBufferFromPipe, (sizeof(readBufferFromPipe)+1)) > 0)
+				while (read(fd[0], readBufferFromPipe, (sizeof(char) * 100)) > 0)
 					printf("readBufferFromPipe : %s\n", readBufferFromPipe);
-
 
 				stringToReturn = malloc(sizeof(char) * strlen(readBufferFromPipe));
 				strcpy(stringToReturn, readBufferFromPipe);
