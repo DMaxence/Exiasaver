@@ -143,7 +143,9 @@ int		main(int argc, char *argv[])
 	{
 		if (i == timer)
 		{
+			/*Le texte perd tous ses points*/
 			strcpy(tmpString, stringInImage);
+			deleteImage(hourBackground);
 			free(hourBackground);
 			hourBackground = createFullTerminalHourImage(numbers);
 			i = 0;
@@ -156,6 +158,9 @@ int		main(int argc, char *argv[])
 		mergeImages(*hourBackground, *textUpdateImage);
 		printImage(hourBackground);
 
+		printf("\n");
+
+		deleteImage(textUpdateImage);
 		free(textUpdateImage);
 
 		sleep(1);
