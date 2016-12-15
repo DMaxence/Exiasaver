@@ -19,8 +19,13 @@ int		printStats()
 	FILE *file;
 	char *string;
 
+	unsigned int numberTimesLaunched[3];
+
 	string = malloc(100 * sizeof(char));
 	choice = 1;
+	numberTimesLaunched[0] = 0;
+	numberTimesLaunched[1] = 0;
+	numberTimesLaunched[2] = 0;
 
 	while (choice < 5 && choice > 0)
 	{
@@ -51,11 +56,37 @@ int		printStats()
 				printf("\n");
 				break;
 			case 2:
+				printf("Dans l'ordre chronologique, les launcher ont ete appeles dans cet ordre\n");
 				while (fgets(string, 255, file) != NULL)
 				{
 					strtok(string, ";");
-					printf("Launcher numero : %s\n", strtok(NULL, ";"));
+					sscanf(strtok(NULL, ";"), "%d", &choice);
+					switch(choice)
+					{
+						case 1:
+							numberTimesLaunched[0]++;
+							break;
+						case 2:
+							numberTimesLaunched[1]++;
+							break;
+						case 3:
+							numberTimesLaunched[2]++;
+							break;
+					}
+					printf("Launcher numero : %d\n", choice);
 				}
+/*				printf("Nombre de fois le lancheur statique a ete lancé : %d\n", numberTimesLaunched[0]);
+				printf("Nombre de fois le lancheur dynamique a ete lancé : %d\n", numberTimesLaunched[1]);
+				printf("Nombre de fois le lancheur interactif a ete lancé : %d\n", numberTimesLaunched[2]);*/
+
+				sortInsert(numberTimesLaunched, 3);
+				printf("Dans l'ordre trie du moins utilisé au plus grand:\n");
+
+				for (choice = 0; choice < 3; ++choice)
+				{
+					printf("Launcher numero %d\n", numberTimesLaunched[choice]);
+				}
+
 				printf("\n");
 				break;
 			case 3:

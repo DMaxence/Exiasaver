@@ -57,3 +57,6 @@ void	getEnvFolders(int saver, char ** homeFolder, char * argumentsList[4]);
 
 /*fonction pour afficher les statistiques*/
 int		printStats(void);
+
+/*Fonction qui trie un tableau d'ints*/
+void sortInsert(int arr[], int size);

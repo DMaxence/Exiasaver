@@ -36,7 +36,12 @@ int		main(int argc, char *argv[])
 	image numbers[11];
 	image * hourBackground;
 	image * textUpdateImage;
+	image * tmpResizedImage;
+
+	char stringInImage[] = "Actualisation dans quelques secondes";
+	char tmpString[255];
 	char *imgPath;
+	
 	int i;
 	int timer;
 
@@ -110,7 +115,6 @@ int		main(int argc, char *argv[])
 	}
 
 	/*ETAPE 5: redimensionner les numéros*/
-	image * tmpResizedImage;
 	for (int i = 0; i < 11; ++i)
 	{
 		/*On crée une nouvelle image de bonne dimensions*/
@@ -130,8 +134,6 @@ int		main(int argc, char *argv[])
 	/*Dans la mémoire, on a maintenant uniquement les images des chiffres resizés*/
 
 	/*ETAPE 8 : Afficher le timer*/
-	char stringInImage[] = "Actualisation dans quelques secondes";
-	char tmpString[255];
 	strcpy(tmpString, stringInImage);
 	hourBackground = createFullTerminalHourImage(numbers);
 	i = 0;
