@@ -5,6 +5,8 @@ void printImage(image * img)
 	int i;
 	int j;
 
+	printf("\n");
+
 	for (i = 0; i < img->yDim; ++i)
 	{
 		for (j = 0; j < img->xDim; ++j)
@@ -27,6 +29,10 @@ void printImage(image * img)
 				printf("\x1b[38;2;%d;%d;%dm%c\x1b[0m", img->charArray[j][i].rgb.R, img->charArray[j][i].rgb.G, img->charArray[j][i].rgb.B, img->charArray[j][i].c);
 			}
 		}
-		printf("\n");
+		/*Si on affiche pas la derniere ligne, on va a la ligne*/
+		if (i != img->yDim - 1)
+		{
+			printf("\n");
+		}
 	}
 }
