@@ -22,3 +22,7 @@ Cette variable doit contenir les dimensions des chiffres de l'horloge (sous la f
 
 Cette variable change la fréquence à laquelle l'horloge s'actualise
 * EXIASAVER2_SLEEP
+
+Pour ajouter les variables environnementales, il suffit de lancer le script shell "prepareTerminal.sh" depuis la racine du projet.
+Pour compiler tous les programmes, il faut exécuter le script "make.sh" dans le dossier execfiles. Les executables seront placés dans ce même dossier.
+Enfin, pour lancer un screen saver, il faut exécuter le programme "launcher". Ce dernier peut prendre le paramètre "-stats" pour afficher les statistiques.
