@@ -75,17 +75,13 @@ int		printStats()
 					}
 					printf("Launcher numero : %d\n", choice);
 				}
-/*				printf("Nombre de fois le lancheur statique a ete lancé : %d\n", numberTimesLaunched[0]);
+				printf("Nombre de fois le lancheur statique a ete lancé : %d\n", numberTimesLaunched[0]);
 				printf("Nombre de fois le lancheur dynamique a ete lancé : %d\n", numberTimesLaunched[1]);
-				printf("Nombre de fois le lancheur interactif a ete lancé : %d\n", numberTimesLaunched[2]);*/
+				printf("Nombre de fois le lancheur interactif a ete lancé : %d\n", numberTimesLaunched[2]);
 
 				sortInsert(numberTimesLaunched, 3);
-				printf("Dans l'ordre trie du moins utilisé au plus grand:\n");
-
-				for (choice = 0; choice < 3; ++choice)
-				{
-					printf("Launcher numero %d\n", numberTimesLaunched[choice]);
-				}
+				printf("Le launcher le moins lancé a été lancé %d fois\n", numberTimesLaunched[0]);
+				printf("Le launcher le plus lancé a été lancé %d fois\n", numberTimesLaunched[2]);
 
 				printf("\n");
 				break;
